@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Day1
   other-modules:
       Paths_adventofcode2020
   hs-source-dirs:
@@ -50,6 +50,7 @@ test-suite adventofcode2020-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Day1Spec
       Paths_adventofcode2020
   hs-source-dirs:
       test
@@ -57,4 +58,6 @@ test-suite adventofcode2020-test
   build-depends:
       adventofcode2020
     , base >=4.7 && <5
+    , hspec
+    , hspec-discover
   default-language: Haskell2010
