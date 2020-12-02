@@ -1,0 +1,56 @@
+{
+  // Place your adventofcode2020 workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "Day Skeleton": {
+    "scope": "haskell",
+    "prefix": "advent",
+    "body": [
+      "module $TM_FILENAME_BASE (main, part1, part2) where",
+      "",
+      "main :: IO ()",
+      "main = interact (show . \\input -> (part1 input, part2 input))",
+      "",
+      "-- part1 :: String -> Int",
+      "part1 = \\l -> 1",
+      "",
+      "-- part2 :: String -> Int",
+      "part2 = \\l -> 1",
+      ""
+    ]
+  },
+  "Spec Skeleton": {
+    "scope": "haskell",
+    "prefix": "adventspec",
+    "body": [
+      "module $TM_FILENAME_BASE (spec) where",
+      "",
+      "import ${TM_FILENAME_BASE/Spec//} (part1, part2)",
+      "import Test.Hspec",
+      "",
+      "spec :: Spec",
+      "spec = do",
+      "  describe \"Part1\" $ do",
+      "    it \"returns 1 for \" $ do",
+      "      part1 \"\" `shouldBe` 1",
+      "",
+      "  describe \"Part2\" $ do",
+      "    it \"returns 1 for \" $ do",
+      "      part2 \"\" `shouldBe` 1",
+      ""
+    ]
+  }
+}
