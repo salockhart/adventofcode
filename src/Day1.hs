@@ -21,7 +21,7 @@ multiply3 :: (Int, Int, Int) -> Int
 multiply3 (a, b, c) = a * b * c
 
 part1 :: String -> Int
-part1 input = head $ map multiply $ findPair 2020 $ map read $ lines input
+part1 = head . map multiply . findPair 2020 . map read . lines
 
 part2 :: String -> Int
-part2 input = head $ map multiply3 $ findTriple 2020 $ map read $ lines input
+part2 = head . map multiply3 . findTriple 2020 . map read . lines
