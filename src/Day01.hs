@@ -1,4 +1,4 @@
-module Day1 (main, part1, part2) where
+module Day01 (main, part1, part2) where
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))

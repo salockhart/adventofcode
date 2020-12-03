@@ -1,4 +1,4 @@
-module Day2 (main, part1, part2) where
+module Day02 (main, part1, part2) where
 
 import Text.Regex.PCRE
 

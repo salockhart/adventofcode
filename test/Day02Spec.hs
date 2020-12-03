@@ -1,6 +1,6 @@
-module Day2Spec (spec) where
+module Day02Spec (spec) where
 
-import Day2 (part1, part2)
+import Day02 (part1, part2)
 import Test.Hspec
 
 input = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc"
