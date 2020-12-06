@@ -12,9 +12,8 @@ module Day04
   )
 where
 
+import AOC (splitOn)
 import Data.List (isInfixOf)
-import Data.Text (replace)
-import qualified Data.Text as T
 import Text.Regex.PCRE ((=~))
 
 main :: IO ()
@@ -79,10 +78,7 @@ isValidPID str = do
     [num] -> length num == 9
 
 parse :: String -> [String]
-parse =
-  map (T.unpack . replace (T.pack "\n") (T.pack " "))
-    . T.splitOn (T.pack "\n\n")
-    . T.pack
+parse = splitOn "\n\n"
 
 part1 :: String -> Int
 part1 =
