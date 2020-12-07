@@ -1,7 +1,13 @@
 module Day06 (main, part1, part2) where
 
-import AOC (splitOn)
 import Data.List (intersect, union)
+import qualified Data.Text as T
+
+splitOn :: String -> String -> [String]
+splitOn delim =
+  map T.unpack
+    . T.splitOn (T.pack delim)
+    . T.pack
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
