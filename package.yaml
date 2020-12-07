@@ -27,6 +27,7 @@ library:
   dependencies:
   - text
   - regex-pcre
+  - containers
 
 executables:
   adventofcode2020-exe:
