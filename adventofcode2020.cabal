@@ -33,6 +33,7 @@ library
       Day06
       Day07
       Day08
+      Day09
   other-modules:
       Paths_adventofcode2020
   hs-source-dirs:
@@ -68,6 +69,7 @@ test-suite adventofcode2020-test
       Day06Spec
       Day07Spec
       Day08Spec
+      Day09Spec
       Paths_adventofcode2020
   hs-source-dirs:
       test
