@@ -29,6 +29,8 @@ library:
   - regex-pcre
   - containers
   - vector
+  - megaparsec
+  - parser-combinators
 
 executables:
   adventofcode2020-exe:

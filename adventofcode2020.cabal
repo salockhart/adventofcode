@@ -42,6 +42,7 @@ library
       Day15
       Day16
       Day17
+      Day18
   other-modules:
       Paths_adventofcode2020
   hs-source-dirs:
@@ -49,6 +50,8 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , megaparsec
+    , parser-combinators
     , regex-pcre
     , text
     , vector
@@ -87,6 +90,7 @@ test-suite adventofcode2020-test
       Day15Spec
       Day16Spec
       Day17Spec
+      Day18Spec
       Paths_adventofcode2020
   hs-source-dirs:
       test
