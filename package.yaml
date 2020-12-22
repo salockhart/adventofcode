@@ -28,6 +28,7 @@ library:
   - text
   - regex-pcre
   - containers
+  - vector
 
 executables:
   adventofcode2020-exe:

@@ -39,6 +39,7 @@ library
       Day12
       Day13
       Day14
+      Day15
   other-modules:
       Paths_adventofcode2020
   hs-source-dirs:
@@ -48,6 +49,7 @@ library
     , containers
     , regex-pcre
     , text
+    , vector
   default-language: Haskell2010
 
 executable adventofcode2020-exe
@@ -80,6 +82,7 @@ test-suite adventofcode2020-test
       Day12Spec
       Day13Spec
       Day14Spec
+      Day15Spec
       Paths_adventofcode2020
   hs-source-dirs:
       test
