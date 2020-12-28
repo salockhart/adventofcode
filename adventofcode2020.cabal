@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      AOC
       Day01
       Day02
       Day03
@@ -44,6 +45,7 @@ library
       Day17
       Day18
       Day19
+      Day21
   other-modules:
       Paths_adventofcode2020
   hs-source-dirs:
@@ -93,6 +95,7 @@ test-suite adventofcode2020-test
       Day17Spec
       Day18Spec
       Day19Spec
+      Day21Spec
       Paths_adventofcode2020
   hs-source-dirs:
       test
