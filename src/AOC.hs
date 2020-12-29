@@ -1,7 +1,7 @@
-module AOC (splitOn, uniques, groupOn, applyN) where
+module AOC (splitOn, uniques, groupOn, applyN, slice) where
 
 import qualified Data.Foldable as Foldable
-import Data.List (groupBy, sortBy)
+import Data.List (groupBy)
 import qualified Data.List as List
 import qualified Data.Set as Set
 import qualified Data.Text as T
@@ -25,3 +25,6 @@ groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
 groupOn f = groupBy ((==) `on2` f)
   where
     (.*.) `on2` f = \x -> let fx = f x in \y -> fx .*. f y
+
+slice :: Int -> Int -> [a] -> [a]
+slice from to xs = take (to - from + 1) (drop from xs)
