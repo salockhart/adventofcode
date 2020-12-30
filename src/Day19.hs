@@ -1,9 +1,9 @@
 module Day19 (main, part1, part2) where
 
+import AOC (splitOn)
 import Data.Either (rights)
 import qualified Data.IntMap as Map
 import Data.List (find, foldl', isSuffixOf)
-import qualified Data.Text as T
 import Data.Void (Void)
 import Text.Megaparsec
   ( Parsec,
@@ -23,12 +23,6 @@ type Parser = Parsec Void String
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
-
-splitOn :: String -> String -> [String]
-splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
 
 parseOr :: Parser [[Int]]
 parseOr = do

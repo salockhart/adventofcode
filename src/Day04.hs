@@ -12,18 +12,12 @@ module Day04
   )
 where
 
+import AOC (splitOn)
 import Data.List (isInfixOf)
-import qualified Data.Text as T
 import Text.Regex.PCRE ((=~))
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
-
-splitOn :: String -> String -> [String]
-splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
 
 hasFields :: String -> Bool
 hasFields str =

@@ -1,17 +1,11 @@
 module Day13 (main, part1, part2) where
 
+import AOC (splitOn)
 import qualified Data.Bifunctor as Bifunctor
 import Data.List (sort)
-import qualified Data.Text as T
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
-
-splitOn :: String -> String -> [String]
-splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
 
 parse :: [String] -> (Int, [Int])
 parse [earliest, ids] = (read earliest, sort $ map read $ filter (/= "x") $ splitOn "," ids)

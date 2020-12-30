@@ -1,19 +1,13 @@
 module Day15 (main, part1, part2) where
 
+import AOC (splitOn)
 import Control.Monad
 import Control.Monad.ST
 import Data.List as List
-import qualified Data.Text as T
 import Data.Vector.Unboxed.Mutable as MVector
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
-
-splitOn :: String -> String -> [String]
-splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
 
 parse :: String -> ([(Int, Int)], Int, Int)
 parse str = do

@@ -1,8 +1,8 @@
 module Day07 (main, part1, part2) where
 
+import AOC (splitOn)
 import Data.List (find)
 import qualified Data.Set as Set
-import qualified Data.Text as T
 import Text.Regex.PCRE ((=~))
 
 type Color = String
@@ -21,7 +21,7 @@ parseLeaf str = do
 parseLeaves :: Color -> [(Int, Color)]
 parseLeaves "no other bags." = []
 parseLeaves str = do
-  let leaves = map T.unpack $ T.splitOn (T.pack ", ") $ T.pack str
+  let leaves = splitOn ", " str
   map parseLeaf leaves
 
 parse :: String -> Rule

@@ -1,20 +1,14 @@
 module Day16 (main, part1, part2) where
 
+import AOC (splitOn)
 import qualified Control.Arrow as Data.Bifunctor
 import Data.List (isPrefixOf, sortBy)
-import qualified Data.Text as T
 import Text.Regex.PCRE ((=~))
 
 type Rule = (String, [Int])
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
-
-splitOn :: String -> String -> [String]
-splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
 
 parseTickets :: [String] -> [[Int]]
 parseTickets = map (map read . splitOn ",")
