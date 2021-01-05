@@ -2,13 +2,11 @@
 
 module Day24 (main, part1, part2) where
 
-import AOC (uniques)
 import Data.Either (rights)
-import Data.List (foldl', group, partition, sort)
+import Data.List (foldl', group, nub, partition, sort)
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
 import Data.Void (Void)
-import Debug.Trace (trace)
 import Text.Megaparsec (Parsec, choice, many, parse)
 import Text.Megaparsec.Char (string)
 
@@ -66,7 +64,7 @@ execute :: Int -> TileMap -> TileMap
 execute 0 tiles = tiles
 execute round tiles = do
   let focusedTiles =
-        uniques $
+        nub $
           concatMap (\c -> c : adjacents c) $
             Map.keys tiles
   let tiles' =

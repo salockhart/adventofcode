@@ -1,7 +1,7 @@
 module Day20 (main, part1, part2, tileToInts) where
 
-import AOC (groupOn, slice, splitOn, uniques)
-import Data.List (groupBy, sort, sortBy, sortOn, transpose)
+import AOC (groupOn, slice, splitOn)
+import Data.List (groupBy, nub, sort, sortBy, sortOn, transpose)
 import qualified Data.Map as Map
 import Data.Maybe (mapMaybe)
 import qualified Data.Ord
@@ -88,7 +88,7 @@ getOpenSlots :: Grid -> [Coord]
 getOpenSlots grid =
   sortBy (\(ax, ay) (bx, by) -> compare (abs ax + abs ay) (abs bx + abs by)) $
     filter (isValidCoord grid) $
-      uniques $
+      nub $
         concatMap getNeighbours $
           Map.keys grid
 
@@ -170,8 +170,8 @@ isSquare grid = do
 buildImage :: Grid -> [[Int]]
 buildImage grid = do
   let coords = Map.keys grid
-  let xs = sort $ uniques $ map fst coords
-  let ys = sort $ uniques $ map snd coords
+  let xs = sort $ nub $ map fst coords
+  let ys = sort $ nub $ map snd coords
   combine grid xs ys
   where
     combine :: Grid -> [Int] -> [Int] -> [[Int]]

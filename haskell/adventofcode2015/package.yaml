@@ -1,0 +1,45 @@
+name:                adventofcode2015
+version:             0.1.0.0
+github:              "githubuser/adventofcode2015"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2020 Author name here"
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/adventofcode2015#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- adventofcode-common
+- text
+- containers
+- array
+- MissingH
+- regex-pcre
+- vector
+- megaparsec
+- parser-combinators
+- json
+
+library:
+  source-dirs: src
+
+tests:
+  adventofcode2015-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - adventofcode2015
+    - hspec
+    - hspec-discover
