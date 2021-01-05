@@ -6,10 +6,6 @@ author:              "Author name here"
 maintainer:          "example@example.com"
 copyright:           "2020 Author name here"
 
-extra-source-files:
-- README.md
-- ChangeLog.md
-
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
 # category:            Web
@@ -21,27 +17,15 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- text
+- regex-pcre
+- containers
+- vector
+- megaparsec
+- parser-combinators
 
 library:
   source-dirs: src
-  dependencies:
-  - text
-  - regex-pcre
-  - containers
-  - vector
-  - megaparsec
-  - parser-combinators
-
-executables:
-  adventofcode2020-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - adventofcode2020
 
 tests:
   adventofcode2020-test:
