@@ -3,8 +3,6 @@ module Day17Spec (spec) where
 import Day17 (part1, part2)
 import Test.Hspec
 
-input = ""
-
 spec :: Spec
 spec = do
   describe "Part1" $ do

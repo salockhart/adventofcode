@@ -19,17 +19,23 @@ import qualified Data.List as List
 import qualified Data.Map as Map
 import qualified Data.Text as T
 
+-- String operations
+
 splitOn :: String -> String -> [String]
 splitOn delim =
   map T.unpack
     . T.splitOn (T.pack delim)
     . T.pack
 
+-- Utils
+
 identity :: a -> a
 identity x = x
 
 applyN :: Int -> (a -> a) -> a -> a
 applyN n f = Foldable.foldr (.) identity (List.replicate n f)
+
+-- List operations
 
 groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
 groupOn f = groupBy ((==) `on2` f)
@@ -51,6 +57,8 @@ chunks n cs = [slice i (i + n -1) cs | i <- [0 .. (length cs - n)]]
 combinations :: [a] -> [[a]]
 combinations [] = [[]]
 combinations xs = [] : concat [map (x :) $ combinations xs' | (x : xs') <- tails xs]
+
+-- Map operations
 
 type Coord = (Int, Int)
 
