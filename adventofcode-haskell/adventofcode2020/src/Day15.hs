@@ -18,7 +18,7 @@ parse str = do
 initVector :: Int -> [(Int, Int)] -> ST s (MVector.MVector s Int)
 initVector n init = do
   result <- MVector.replicate 30000000 (-1)
-  forM_ init $ \(k, v) -> do
+  Control.Monad.forM_ init $ \(k, v) -> do
     write result k v
   return result
 
