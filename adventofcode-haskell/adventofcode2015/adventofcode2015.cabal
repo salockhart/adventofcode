@@ -55,7 +55,7 @@ library
     , json
     , megaparsec
     , parser-combinators
-    , regex-pcre
+    , regex-pcre-builtin
     , text
     , vector
   default-language: Haskell2010
@@ -97,7 +97,7 @@ test-suite adventofcode2015-test
     , json
     , megaparsec
     , parser-combinators
-    , regex-pcre
+    , regex-pcre-builtin
     , text
     , vector
   default-language: Haskell2010

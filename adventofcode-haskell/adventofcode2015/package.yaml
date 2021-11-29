@@ -22,7 +22,7 @@ dependencies:
 - containers
 - array
 - MissingH
-- regex-pcre
+- regex-pcre-builtin
 - vector
 - megaparsec
 - parser-combinators

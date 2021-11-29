@@ -56,7 +56,7 @@ library
     , containers
     , megaparsec
     , parser-combinators
-    , regex-pcre
+    , regex-pcre-builtin
     , text
     , vector
   default-language: Haskell2010
@@ -103,7 +103,7 @@ test-suite adventofcode2020-test
     , hspec-discover
     , megaparsec
     , parser-combinators
-    , regex-pcre
+    , regex-pcre-builtin
     , text
     , vector
   default-language: Haskell2010

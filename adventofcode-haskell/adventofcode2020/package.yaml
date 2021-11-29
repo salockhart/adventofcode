@@ -19,7 +19,7 @@ dependencies:
 - base >= 4.7 && < 5
 - adventofcode-common
 - text
-- regex-pcre
+- regex-pcre-builtin
 - containers
 - vector
 - megaparsec
