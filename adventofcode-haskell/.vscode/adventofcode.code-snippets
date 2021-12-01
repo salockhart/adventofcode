@@ -46,11 +46,11 @@
       "spec :: Spec",
       "spec = do",
       "  describe \"Part1\" $ do",
-      "    it (\"returns 1 for \" ++ input) $ do",
+      "    it input $ do",
       "      part1 input `shouldBe` \"1\"",
       "",
       "  describe \"Part2\" $ do",
-      "    it (\"returns 1 for \" ++ input) $ do",
+      "    it input $ do",
       "      part2 input `shouldBe` \"1\"",
       ""
     ]
