@@ -20,6 +20,8 @@ source-repository head
   location: https://github.com/githubuser/adventofcode2017
 
 library
+  exposed-modules:
+      Day01
   other-modules:
       Paths_adventofcode2017
   hs-source-dirs:
@@ -39,6 +41,7 @@ test-suite adventofcode2017-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Day01Spec
       Paths_adventofcode2017
   hs-source-dirs:
       test
