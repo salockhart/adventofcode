@@ -32,6 +32,7 @@ resolver:
 packages:
 - adventofcode-common
 - adventofcode2015
+- adventofcode2017
 - adventofcode2020
 - adventofcode2021
 # Dependency packages to be pulled from upstream that are not in the resolver.
