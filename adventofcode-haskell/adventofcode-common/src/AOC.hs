@@ -7,6 +7,7 @@ module AOC
     minimumOn,
     maximumOn,
     combinations,
+    median,
     parseIntoCoordMap,
     Coord,
     CoordMap,
@@ -57,6 +58,15 @@ chunks n cs = [slice i (i + n -1) cs | i <- [0 .. (length cs - n)]]
 combinations :: [a] -> [[a]]
 combinations [] = [[]]
 combinations xs = [] : concat [map (x :) $ combinations xs' | (x : xs') <- tails xs]
+
+median :: Integral a => [a] -> Maybe a
+median xs
+  | null xs = Nothing
+  | odd len = Just $ xs !! mid
+  | otherwise = Just $ (xs !! (mid - 1) + xs !! mid) `quot` 2
+  where
+    len = length xs
+    mid = len `quot` 2
 
 -- Map operations
 
