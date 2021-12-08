@@ -1,6 +1,6 @@
 module Day04 (main, part1, part2) where
 
-import AOC (slice, splitOn)
+import AOC (forceUnwrap, slice, splitOn)
 import Data.Bits (Bits (xor))
 import Data.List (elemIndex, findIndex, transpose)
 import Data.Maybe (fromMaybe, isJust, isNothing)
@@ -23,9 +23,6 @@ parse input = do
     parseBoard = map (map read . words) . lines
 
 winningLines = map (\b -> b ++ transpose b)
-
-forceUnwrap (Just x) = x
-forceUnwrap Nothing = error "cannot unwrap"
 
 solve sf (ns, bs) = score winningBoard
   where

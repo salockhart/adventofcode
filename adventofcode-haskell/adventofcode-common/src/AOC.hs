@@ -2,6 +2,7 @@ module AOC
   ( splitOn,
     groupOn,
     applyN,
+    forceUnwrap,
     slice,
     chunks,
     minimumOn,
@@ -35,6 +36,10 @@ identity x = x
 
 applyN :: Int -> (a -> a) -> a -> a
 applyN n f = Foldable.foldr (.) identity (List.replicate n f)
+
+forceUnwrap :: Maybe p -> p
+forceUnwrap (Just x) = x
+forceUnwrap Nothing = error "cannot unwrap"
 
 -- List operations
 
