@@ -10,6 +10,7 @@ module AOC
     combinations,
     median,
     parseIntoCoordMap,
+    getNeighbours,
     Coord,
     CoordMap,
   )
@@ -19,6 +20,7 @@ import qualified Data.Foldable as Foldable
 import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
 import qualified Data.Map as Map
+import Data.Maybe (isJust, mapMaybe)
 import qualified Data.Text as T
 
 -- String operations
@@ -93,3 +95,8 @@ parseIntoCoordMap =
     )
     Map.empty
     . zip [0 ..]
+
+getNeighbours :: CoordMap a -> Coord -> CoordMap a
+getNeighbours m (x, y) =
+  let candidates = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
+   in Map.filterWithKey (\k _ -> k `elem` candidates) m
