@@ -11,6 +11,8 @@ module AOC
     median,
     parseIntoCoordMap,
     getNeighbours,
+    getDiagonals,
+    traceCoordMap,
     Coord,
     CoordMap,
   )
@@ -20,8 +22,9 @@ import qualified Data.Foldable as Foldable
 import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
 import qualified Data.Map as Map
-import Data.Maybe (isJust, mapMaybe)
+import Data.Maybe (fromMaybe, isJust, mapMaybe)
 import qualified Data.Text as T
+import Debug.Trace (trace)
 
 -- String operations
 
@@ -100,3 +103,34 @@ getNeighbours :: CoordMap a -> Coord -> CoordMap a
 getNeighbours m (x, y) =
   let candidates = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
    in Map.filterWithKey (\k _ -> k `elem` candidates) m
+
+getDiagonals :: CoordMap a -> Coord -> CoordMap a
+getDiagonals m (x, y) =
+  let candidates = [(x - 1, y - 1), (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1)]
+   in Map.filterWithKey (\k _ -> k `elem` candidates) m
+
+traceCoordMap :: Show a => CoordMap a -> CoordMap a
+traceCoordMap m =
+  trace
+    ( concat
+        [ ( concat
+              [ getValue m x y ++ " "
+                | x <- [minX .. maxX]
+              ]
+          )
+            ++ "\n"
+          | y <- [minY .. maxY]
+        ]
+    )
+    m
+  where
+    coords = Map.keys m
+    xs = map fst coords
+    ys = map snd coords
+    minX = minimum xs
+    maxX = maximum xs
+    minY = minimum ys
+    maxY = maximum ys
+    getValue m x y =
+      let val = m Map.!? (x, y)
+       in if isJust val then show $ forceUnwrap val else " "
