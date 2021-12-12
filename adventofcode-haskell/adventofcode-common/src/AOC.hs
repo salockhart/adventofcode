@@ -3,6 +3,7 @@ module AOC
     groupOn,
     applyN,
     forceUnwrap,
+    dbg,
     slice,
     chunks,
     minimumOn,
@@ -12,7 +13,7 @@ module AOC
     parseIntoCoordMap,
     getNeighbours,
     getDiagonals,
-    traceCoordMap,
+    dbgCoordMap,
     Coord,
     CoordMap,
   )
@@ -45,6 +46,9 @@ applyN n f = Foldable.foldr (.) identity (List.replicate n f)
 forceUnwrap :: Maybe p -> p
 forceUnwrap (Just x) = x
 forceUnwrap Nothing = error "cannot unwrap"
+
+dbg :: Show a => a -> a
+dbg x = trace (show x) x
 
 -- List operations
 
@@ -109,8 +113,8 @@ getDiagonals m (x, y) =
   let candidates = [(x - 1, y - 1), (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1)]
    in Map.filterWithKey (\k _ -> k `elem` candidates) m
 
-traceCoordMap :: Show a => CoordMap a -> CoordMap a
-traceCoordMap m =
+dbgCoordMap :: Show a => CoordMap a -> CoordMap a
+dbgCoordMap m =
   trace
     ( concat
         [ ( concat

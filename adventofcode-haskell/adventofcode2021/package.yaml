@@ -24,6 +24,8 @@ dependencies:
 - vector
 - megaparsec
 - parser-combinators
+- parallel
+- split
 
 library:
   source-dirs: src

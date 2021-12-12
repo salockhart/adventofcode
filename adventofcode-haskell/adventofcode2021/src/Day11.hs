@@ -4,10 +4,10 @@ import AOC
   ( Coord,
     CoordMap,
     applyN,
+    dbgCoordMap,
     getDiagonals,
     getNeighbours,
     parseIntoCoordMap,
-    traceCoordMap,
   )
 import Data.List (nub, sort)
 import qualified Data.Map as Map
