@@ -35,12 +35,14 @@ library
       Day12
       Day13
       Day14
+      Day15
   other-modules:
       Paths_adventofcode2021
   hs-source-dirs:
       src
   build-depends:
-      adventofcode-common
+      PSQueue
+    , adventofcode-common
     , base >=4.7 && <5
     , containers
     , megaparsec
@@ -70,12 +72,14 @@ test-suite adventofcode2021-test
       Day12Spec
       Day13Spec
       Day14Spec
+      Day15Spec
       Paths_adventofcode2021
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      adventofcode-common
+      PSQueue
+    , adventofcode-common
     , adventofcode2021
     , base >=4.7 && <5
     , containers

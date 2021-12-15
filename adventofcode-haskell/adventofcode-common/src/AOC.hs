@@ -106,12 +106,12 @@ parseIntoCoordMap =
 getNeighbours :: CoordMap a -> Coord -> CoordMap a
 getNeighbours m (x, y) =
   let candidates = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
-   in Map.filterWithKey (\k _ -> k `elem` candidates) m
+   in Map.map forceUnwrap $ Map.fromList $ filter (isJust . snd) $ map (\c -> (c, m Map.!? c)) candidates
 
 getDiagonals :: CoordMap a -> Coord -> CoordMap a
 getDiagonals m (x, y) =
   let candidates = [(x - 1, y - 1), (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1)]
-   in Map.filterWithKey (\k _ -> k `elem` candidates) m
+   in Map.map forceUnwrap $ Map.fromList $ filter (isJust . snd) $ map (\c -> (c, m Map.!? c)) candidates
 
 dbgCoordMap :: Show a => CoordMap a -> CoordMap a
 dbgCoordMap m =
