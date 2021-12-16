@@ -4,6 +4,7 @@ module AOC
     applyN,
     forceUnwrap,
     dbg,
+    btoi,
     slice,
     chunks,
     minimumOn,
@@ -49,6 +50,9 @@ forceUnwrap Nothing = error "cannot unwrap"
 
 dbg :: Show a => a -> a
 dbg x = trace (show x) x
+
+btoi :: [Int] -> Int
+btoi = sum . zipWith (\i x -> x * (2 ^ i)) [0 ..] . reverse
 
 -- List operations
 

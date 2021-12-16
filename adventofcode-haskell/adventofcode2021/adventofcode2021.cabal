@@ -36,6 +36,7 @@ library
       Day13
       Day14
       Day15
+      Day16
   other-modules:
       Paths_adventofcode2021
   hs-source-dirs:
@@ -73,6 +74,7 @@ test-suite adventofcode2021-test
       Day13Spec
       Day14Spec
       Day15Spec
+      Day16Spec
       Paths_adventofcode2021
   hs-source-dirs:
       test
