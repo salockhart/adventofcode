@@ -20,28 +20,19 @@ parse x =
     parseRule r = let (ins : outs : _) = splitOn " -> " r in (ins, head outs)
 
 -- applyRules :: State -> State
-applyRules (polymer, rules) = do
-  let pairs = chunks 2 polymer
-  let updatedPolymer =
-        catMaybes $
-          foldReactions $
-            map (\pair@(a : b : _) -> [Just a, rules Map.!? pair, Just b]) $
-              chunks 2 polymer
-  (updatedPolymer, rules)
+applyRules n (p, rules) = Map.insertWith (+) (last p) 1 $ applyRules' n p
   where
-    foldReactions rs = foldl1 (\acc triple -> init acc ++ triple) rs
-
-countOccurrences =
-  map (\x -> (x, length x))
-    . group
-    . sort
+    applyRules' 0 p = (Map.fromList . map (\xs -> (head xs, length xs)) . group . sort . init) p
+    applyRules' n polymer =
+      Map.unionsWith (+) $
+        map
+          (\pair@(a : b : _) -> applyRules' (n - 1) [a, rules Map.! pair, b])
+          (chunks 2 polymer)
 
 solve n =
-  (\ls -> maximum ls - minimum ls)
-    . map snd
-    . countOccurrences
-    . fst
-    . applyN n applyRules
+  (\xs -> maximum xs - minimum xs)
+    . Map.elems
+    . applyRules n
 
 part1 :: String -> String
 part1 =
