@@ -31,6 +31,10 @@ inputC =
   \[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]\n\
   \[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]"
 
+inputD =
+  "[[[[3,9],[0,5]],[4,6]],3]\n\
+  \[[[8,[3,0]],[[8,4],[9,4]]],[[[0,9],4],[[3,8],2]]]"
+
 spec :: Spec
 spec = do
   describe "Part1" $ do
@@ -40,6 +44,8 @@ spec = do
       part1 inputB `shouldBe` "3488"
     it inputC $ do
       part1 inputC `shouldBe` "4140"
+    it inputD $ do
+      part1 inputD `shouldBe` "3097"
 
   describe "Part2" $ do
     it inputC $ do

@@ -1,8 +1,9 @@
 module Day18 (main, part1, part2) where
 
 import AOC (combinations, dbg, groupOn)
-import Data.List (findIndex)
+import Data.List (findIndex, maximumBy, minimumBy, nub, sortBy)
 import Data.List.Split (chunk, chunksOf)
+import Data.Maybe (isJust)
 import Debug.Trace (trace)
 
 main :: IO ()
@@ -16,11 +17,17 @@ parse = reverse . snd . foldl parse' (0, [])
     parse' (i, t) ',' = (i, t)
     parse' (i, t) x = (i, (read [x], i) : t)
 
-explodeNumbers :: [(Int, Int)] -> [(Int, Int)]
-explodeNumbers t = do
+normalizeNumbers :: [(Int, Int)] -> [(Int, Int)]
+normalizeNumbers t = do
   let indexOfExplosion = findIndex (\(x, l) -> l == 5) t
-  let exploded = maybe t (applyExplosionAt t) indexOfExplosion
-  if exploded == t then t else explodeNumbers exploded
+  let indexOfSplit = findIndex (\(x, l) -> x > 9) t
+
+  if isJust indexOfExplosion
+    then normalizeNumbers $ maybe t (applyExplosionAt t) indexOfExplosion
+    else
+      if isJust indexOfSplit
+        then normalizeNumbers $ maybe t (applySplitAt t) indexOfSplit
+        else t
   where
     applyExplosionAt t i =
       let (before, (xa, la) : (xb, lb) : after) = splitAt i t
@@ -40,21 +47,10 @@ explodeNumbers t = do
                       (xb' + xb, lb') : a
                     else after
             before' ++ (0, 4) : after'
-
-splitNumbers :: [(Int, Int)] -> [(Int, Int)]
-splitNumbers t = do
-  let indexOfSplit = findIndex (\(x, l) -> x > 9) t
-  maybe t (applySplitAt t) indexOfSplit
-  where
     applySplitAt t i = do
       let (before, (x, l) : after) = splitAt i t
       let half = x `quot` 2
       before ++ [(half, l + 1), (x - half, l + 1)] ++ after
-
-normalizeNumbers :: [(Int, Int)] -> [(Int, Int)]
-normalizeNumbers t = do
-  let normalized = (splitNumbers . explodeNumbers) t
-  if t == normalized then t else normalizeNumbers normalized
 
 addNumbers :: [(Int, Int)] -> [(Int, Int)] -> [(Int, Int)]
 addNumbers a b =
@@ -62,18 +58,14 @@ addNumbers a b =
     map (\(x, l) -> (x, l + 1)) (a ++ b)
 
 magnitudeNumber :: [(Int, Int)] -> Int
-magnitudeNumber t = do
-  let m = magnitudeNumber' t
-  if length m > 1 then magnitudeNumber m else (fst . head) m
+magnitudeNumber [] = error "cannot magnitude"
+magnitudeNumber (t : ts) = trace (show (t : ts)) $ fst $ head $ foldl handleStack [t] ts
   where
-    magnitudeNumber' =
-      concatMap
-        (\g -> if length g == 1 then g else [magnitudePair g])
-        . concatMap
-          (\g -> if length g > 2 then chunksOf 2 g else [g])
-        . groupOn snd
-    magnitudePair ((xa, la) : (xb, lb) : _) = (3 * xa + 2 * xb, la -1)
-    magnitudePair _ = error "cannot magnitude"
+    handleStack [] t = [t]
+    handleStack (h@(xh, lh) : hs) a@(xa, la) =
+      if la == lh
+        then handleStack hs (3 * xh + 2 * xa, lh -1)
+        else a : h : hs
 
 part1 :: String -> String
 part1 =
@@ -84,17 +76,10 @@ part1 =
     . lines
 
 part2 :: String -> String
-part2 = show . const 3993
-
--- show
---   . maximum
---   . map
---     ( \(a : b : _) ->
---         max
---           (magnitudeNumber $ addNumbers a b)
---           (magnitudeNumber $ addNumbers b a)
---     )
---   . filter ((== 2) . length)
---   . combinations
---   . map parse
---   . lines
+part2 =
+  show
+    . maximum
+    . map (magnitudeNumber . uncurry addNumbers)
+    . (\xs -> [(a, b) | a <- xs, b <- xs, a /= b])
+    . map parse
+    . lines
