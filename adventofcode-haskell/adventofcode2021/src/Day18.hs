@@ -59,7 +59,7 @@ addNumbers a b =
 
 magnitudeNumber :: [(Int, Int)] -> Int
 magnitudeNumber [] = error "cannot magnitude"
-magnitudeNumber (t : ts) = trace (show (t : ts)) $ fst $ head $ foldl handleStack [t] ts
+magnitudeNumber (t : ts) = fst $ head $ foldl handleStack [t] ts
   where
     handleStack [] t = [t]
     handleStack (h@(xh, lh) : hs) a@(xa, la) =
