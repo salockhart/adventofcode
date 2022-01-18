@@ -42,6 +42,7 @@ library
       Day19
       Day20
       Day21
+      Day22
   other-modules:
       Paths_adventofcode2021
   hs-source-dirs:
@@ -85,6 +86,7 @@ test-suite adventofcode2021-test
       Day19Spec
       Day20Spec
       Day21Spec
+      Day22Spec
       Paths_adventofcode2021
   hs-source-dirs:
       test
