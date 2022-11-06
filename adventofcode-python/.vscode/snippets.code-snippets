@@ -1,0 +1,36 @@
+{
+  "Day Skeleton": {
+    "scope": "python",
+    "prefix": "advent",
+    "body": [
+      "import fileinput",
+      "",
+      "",
+      "def part1(lines):",
+      "\t\treturn \"not implemented\"",
+      "",
+      "",
+      "def part2(lines):",
+      "\t\treturn \"not implemented\"",
+      "",
+      "",
+      "parts = (part1, part2)",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "\t\tlines = list(fileinput.input())",
+      "\t\tprint(\"part 1: %d\" % part1(lines))",
+      "\t\tprint(\"part 2: %d\" % part2(lines))"
+    ]
+  },
+  "Test Skeleton": {
+    "scope": "python",
+    "prefix": "adventtest",
+    "body": [
+      "from src.Day01 import part1",
+      "",
+      "def test_one():",
+      "\tassert part1([]) == \"not implemented\""
+    ]
+  }
+}
