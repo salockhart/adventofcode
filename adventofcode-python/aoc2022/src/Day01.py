@@ -2,7 +2,7 @@ from aocd import data, submit
 
 
 def parse(input):
-    return [sum([int(y) for y in x.splitlines()]) for x in input.strip().split("\n\n")]
+    return [sum([int(y) for y in x.splitlines()]) for x in input.split("\n\n")]
 
 
 def part1(input):

@@ -32,10 +32,20 @@
     "scope": "python",
     "prefix": "adventtest",
     "body": [
-      "from src.Day01 import part1",
+      "from src.Day01 import part1, part2",
+      "",
+      "input = \"\"\"",
+      "input goes here",
+      "\"\"\".strip()",
+      "",
       "",
       "def test_one():",
-      "\tassert part1([]) == \"not implemented\""
+      "\tassert part1(input) == \"not implemented\"",
+      "",
+      "",
+      "def test_two():",
+      "\tassert part2(input) == \"not implemented\"",
+      ""
     ]
   }
 }
