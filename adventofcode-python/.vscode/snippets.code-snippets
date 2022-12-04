@@ -7,11 +7,11 @@
       "",
       "",
       "def part1(input):",
-      "\treturn \"not implemented\"",
+      "\treturn None",
       "",
       "",
       "def part2(input):",
-      "\treturn \"not implemented\"",
+      "\treturn None",
       "",
       "",
       "parts = (part1, part2)",
@@ -32,7 +32,7 @@
     "scope": "python",
     "prefix": "adventtest",
     "body": [
-      "from src.Day01 import part1, part2",
+      "from src.${TM_FILENAME_BASE/test_//} import part1, part2",
       "",
       "input = \"\"\"",
       "input goes here",
@@ -40,11 +40,11 @@
       "",
       "",
       "def test_one():",
-      "\tassert part1(input) == \"not implemented\"",
+      "\tassert part1(input) == None",
       "",
       "",
       "def test_two():",
-      "\tassert part2(input) == \"not implemented\"",
+      "\tassert part2(input) == None",
       ""
     ]
   }
