@@ -1,0 +1,23 @@
+from src.Day05 import part1, part2
+
+input = """
+    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2
+""".strip(
+    "\n"
+)
+
+
+def test_one():
+    assert part1(input) == "CMZ"
+
+
+def test_two():
+    assert part2(input) == "MCD"
