@@ -4,7 +4,9 @@ input = """
 A Y
 B X
 C Z
-""".strip()
+""".strip(
+    "\n"
+)
 
 
 def test_one():

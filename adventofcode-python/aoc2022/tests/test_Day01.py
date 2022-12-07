@@ -15,7 +15,9 @@ input = """
 9000
 
 10000
-""".strip()
+""".strip(
+    "\n"
+)
 
 
 def test_one():

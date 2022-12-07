@@ -7,7 +7,9 @@ PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
-""".strip()
+""".strip(
+    "\n"
+)
 
 
 def test_one():
