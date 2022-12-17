@@ -368,7 +368,7 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "e9e928261942eba767e493c485b525fdd856b655e3227705d2ec77f3f509bf99"
+content-hash = "7d2b55f10034db3fc6d82d91cf97519398ee7d1f007816a85bcac6a4af5e4c23"
 
 [metadata.files]
 advent-of-code-data = [
