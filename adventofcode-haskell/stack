@@ -1,7 +1,0 @@
-#!/bin/sh
-
-export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
-
-stack "$@" --compiler ghc-8.10.7 --system-ghc

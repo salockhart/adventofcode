@@ -1,12 +1,10 @@
 module Day16 (main, part1, part2) where
 
-import AOC (btoi, chunks, dbg, slice)
+import AOC (btoi)
 import Control.Monad.Combinators (manyTill_)
 import Data.Either (fromRight)
-import Data.List.Split (chunksOf, splitEvery)
 import Data.Void (Void)
-import Debug.Trace (trace)
-import Text.Megaparsec (ErrorItem (EndOfInput, Label), MonadParsec (failure), Parsec, choice, count, getInput, parse, some, try, unexpected)
+import Text.Megaparsec (Parsec, choice, count, parse, some, try)
 import Text.Megaparsec.Char (binDigitChar, char, string)
 
 data Packet
@@ -19,6 +17,7 @@ type Parser = Parsec Void String
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 
+parseHex :: Char -> String
 parseHex '0' = "0000"
 parseHex '1' = "0001"
 parseHex '2' = "0010"
@@ -37,6 +36,7 @@ parseHex 'E' = "1110"
 parseHex 'F' = "1111"
 parseHex _ = error "cannot parse hex"
 
+btoi' :: [Char] -> Int
 btoi' = btoi . map (\x -> read [x])
 
 parsePacket :: Parser Packet

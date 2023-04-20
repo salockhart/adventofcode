@@ -18,7 +18,7 @@
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
 resolver:
-  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/27.yaml
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -46,7 +46,7 @@ packages:
 #
 # extra-deps: []
 extra-deps:
-- PSQueue-1.1.0.1@sha256:498cd3d55e4644afbeaeb4d1df63392cd95826991465099395abb7d0c3ce3e58,1318
+- PSQueue-1.1.1
 - parser-combinators-1.3.0
 
 # Override default flag values for local packages and extra-deps

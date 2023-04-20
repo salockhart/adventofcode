@@ -5,23 +5,23 @@
 
 packages:
 - completed:
-    hackage: PSQueue-1.1.0.1@sha256:498cd3d55e4644afbeaeb4d1df63392cd95826991465099395abb7d0c3ce3e58,1318
+    hackage: PSQueue-1.1.1@sha256:6a047401f39a437c6cf4f866fb9b8f4b53b465bc12ae78c91e5026a653794509,1500
     pantry-tree:
-      size: 214
-      sha256: 20f22262b113ba31601dcdd2c29315f70365ab298f1ddb3a6fb2c6d8cfb07b2a
+      sha256: 3f3703aa8554ccf834bc1c3457c3df91d73269d1e6ce807d368f75a06328cd82
+      size: 340
   original:
-    hackage: PSQueue-1.1.0.1@sha256:498cd3d55e4644afbeaeb4d1df63392cd95826991465099395abb7d0c3ce3e58,1318
+    hackage: PSQueue-1.1.1
 - completed:
     hackage: parser-combinators-1.3.0@sha256:edd54ba56cbae8fadbcceebcfef31b2c70a835e92e5eda41151b939c40647281,1570
     pantry-tree:
-      size: 795
       sha256: 0754c8d3f213156877f8085da2ad74433167a6c30272b8b64119a2628bd7ade0
+      size: 795
   original:
     hackage: parser-combinators-1.3.0
 snapshots:
 - completed:
-    size: 524996
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/27.yaml
-    sha256: 7ea31a280c56bf36ff591a7397cc384d0dff622e7f9e4225b47d8980f019a0f0
+    sha256: 9fa4bece7acfac1fc7930c5d6e24606004b09e80aa0e52e9f68b148201008db9
+    size: 649606
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml
   original:
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/27.yaml
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml
