@@ -21,8 +21,10 @@
     "body": [
       "module $TM_FILENAME_BASE (main, part1, part2) where",
       "",
+      "import AOC (solveAoCDay)",
+      "",
       "main :: IO ()",
-      "main = interact (show . \\input -> (part1 input, part2 input))",
+      "main = solveAoCDay ${TM_DIRECTORY/.*?adventofcode(\\d+).*/$1/} ${TM_FILENAME_BASE/.*(..)$/$1/} part1 part2",
       "",
       "part1 :: String -> String",
       "part1 = show . const 1",

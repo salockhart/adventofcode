@@ -1,5 +1,6 @@
 module AOC
-  ( splitOn,
+  ( solveAoCDay,
+    splitOn,
     groupOn,
     applyN,
     forceUnwrap,
@@ -20,13 +21,47 @@ module AOC
   )
 where
 
+import Advent (AoC (AoCInput, AoCSubmit), Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
 import qualified Data.Foldable as Foldable
+import Data.Functor ((<&>))
 import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
 import qualified Data.Map as Map
-import Data.Maybe (fromMaybe, isJust, mapMaybe)
+import Data.Maybe (isJust)
+import Data.Text (unpack)
 import qualified Data.Text as T
 import Debug.Trace (trace)
+import System.Environment (getEnv)
+
+-- Advent API
+
+solveAoCDay :: Integer -> Integer -> (String -> String) -> (String -> String) -> IO ()
+solveAoCDay year day part1Solver part2Solver = do
+  token <- getToken
+
+  let runner = runAoC' token
+  input <- runner getInput >>= handleInputError
+
+  doSolve "Part 1: " part1Solver Part1 input runner
+  doSolve "Part 2: " part2Solver Part2 input runner
+
+  return ()
+  where
+    getToken = getEnv "AOC_SESSION"
+    runAoC' key = runAoC (defaultAoCOpts year key)
+    getInput = AoCInput (mkDay_ day)
+    handleInputError = either (error . show) (return . unpack)
+    getSubmit = AoCSubmit (mkDay_ day)
+    doSolve label solver part input runner = do
+      putStr label
+      let result = solver input
+      submissionResult <-
+        if result `elem` invalidAoCSubmissions
+          then return "N/A"
+          else runner (getSubmit part result) >>= handleSubmitError <&> show
+      putStrLn submissionResult
+    handleSubmitError = either (error . show) (return . snd)
+    invalidAoCSubmissions = ["1", "false"]
 
 -- String operations
 
@@ -71,7 +106,7 @@ slice :: Int -> Int -> [a] -> [a]
 slice from to xs = take (to - from + 1) (drop from xs)
 
 chunks :: Int -> [a] -> [[a]]
-chunks n cs = [slice i (i + n -1) cs | i <- [0 .. (length cs - n)]]
+chunks n cs = [slice i (i + n - 1) cs | i <- [0 .. (length cs - n)]]
 
 combinations :: [a] -> [[a]]
 combinations [] = [[]]
