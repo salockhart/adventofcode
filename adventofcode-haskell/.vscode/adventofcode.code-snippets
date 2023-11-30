@@ -21,16 +21,16 @@
     "body": [
       "module $TM_FILENAME_BASE (main, part1, part2) where",
       "",
-      "import AOC (solveAoCDay)",
+      "import AOC (notImplemented, solveAoCDay)",
       "",
       "main :: IO ()",
       "main = solveAoCDay ${TM_DIRECTORY/.*?adventofcode(\\d+).*/$1/} ${TM_FILENAME_BASE/.*(..)$/$1/} part1 part2",
       "",
       "part1 :: String -> String",
-      "part1 = show . const 1",
+      "part1 = notImplemented",
       "",
       "part2 :: String -> String",
-      "part2 = show . const 1",
+      "part2 = notImplemented",
       ""
     ]
   },

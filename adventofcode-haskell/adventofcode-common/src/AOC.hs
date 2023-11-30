@@ -1,27 +1,29 @@
 module AOC
-  ( solveAoCDay,
-    splitOn,
-    groupOn,
-    applyN,
-    forceUnwrap,
-    dbg,
+  ( applyN,
     btoi,
-    slice,
     chunks,
-    minimumOn,
-    maximumOn,
     combinations,
-    median,
-    parseIntoCoordMap,
-    getNeighbours,
-    getDiagonals,
-    dbgCoordMap,
     Coord,
     CoordMap,
+    dbg,
+    dbgCoordMap,
+    forceUnwrap,
+    getDiagonals,
+    getNeighbours,
+    groupOn,
+    maximumOn,
+    median,
+    minimumOn,
+    parseIntoCoordMap,
+    slice,
+    solveAoCDay,
+    splitOn,
+    notImplemented,
   )
 where
 
-import Advent (AoC (AoCInput, AoCSubmit), Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
+import Advent (AoC (AoCInput, AoCSubmit), AoCError, Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
+import Control.Exception (Exception, SomeException, catch, throw, try)
 import qualified Data.Foldable as Foldable
 import Data.Functor ((<&>))
 import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
@@ -34,6 +36,13 @@ import Debug.Trace (trace)
 import System.Environment (getEnv)
 
 -- Advent API
+
+data AoCException = NotImplementedException deriving (Show)
+
+instance Exception AoCException
+
+notImplemented :: a
+notImplemented = throw NotImplementedException
 
 solveAoCDay :: Integer -> Integer -> (String -> String) -> (String -> String) -> IO ()
 solveAoCDay year day part1Solver part2Solver = do
@@ -54,14 +63,10 @@ solveAoCDay year day part1Solver part2Solver = do
     getSubmit = AoCSubmit (mkDay_ day)
     doSolve label solver part input runner = do
       putStr label
-      let result = solver input
-      submissionResult <-
-        if result `elem` invalidAoCSubmissions
-          then return "N/A"
-          else runner (getSubmit part result) >>= handleSubmitError <&> show
+      let output = solver input
+      submissionResult <- runner (getSubmit part output) >>= handleSubmitError <&> show
       putStrLn submissionResult
     handleSubmitError = either (error . show) (return . snd)
-    invalidAoCSubmissions = ["1", "false"]
 
 -- String operations
 
