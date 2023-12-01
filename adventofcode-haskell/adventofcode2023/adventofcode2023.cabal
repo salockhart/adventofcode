@@ -45,6 +45,7 @@ test-suite adventofcode2023-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Day01Spec
       Paths_adventofcode2023
   hs-source-dirs:
       test
