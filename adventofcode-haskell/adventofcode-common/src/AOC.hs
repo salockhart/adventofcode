@@ -22,15 +22,15 @@ module AOC
   )
 where
 
-import Advent (AoC (AoCInput, AoCSubmit), AoCError, Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
-import Control.Exception (Exception, SomeException, catch, throw, try)
+import Advent (AoC (AoCInput, AoCSubmit), Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
+import Control.Exception (Exception, throw)
 import qualified Data.Foldable as Foldable
 import Data.Functor ((<&>))
 import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
 import qualified Data.Map as Map
 import Data.Maybe (isJust)
-import Data.Text (unpack)
+import Data.Text (Text, pack, unpack)
 import qualified Data.Text as T
 import Debug.Trace (trace)
 import System.Environment (getEnv)
@@ -44,27 +44,26 @@ instance Exception AoCException
 notImplemented :: a
 notImplemented = throw NotImplementedException
 
-solveAoCDay :: Integer -> Integer -> (String -> String) -> (String -> String) -> IO ()
+solveAoCDay :: Show a => Show b => Integer -> Integer -> (Text -> a) -> (Text -> b) -> IO ()
 solveAoCDay year day part1Solver part2Solver = do
   token <- getToken
 
   let runner = runAoC' token
   input <- runner getInput >>= handleInputError
 
-  doSolve "Part 1: " part1Solver Part1 input runner
-  doSolve "Part 2: " part2Solver Part2 input runner
+  reportAnswer Part1 (pack $ show $ part1Solver input) runner
+  reportAnswer Part2 (pack $ show $ part2Solver input) runner
 
   return ()
   where
     getToken = getEnv "AOC_SESSION"
     runAoC' key = runAoC (defaultAoCOpts year key)
     getInput = AoCInput (mkDay_ day)
-    handleInputError = either (error . show) (return . unpack)
+    handleInputError = either (error . show) return
     getSubmit = AoCSubmit (mkDay_ day)
-    doSolve label solver part input runner = do
-      putStr label
-      let output = solver input
-      submissionResult <- runner (getSubmit part output) >>= handleSubmitError <&> show
+    reportAnswer part output runner = do
+      putStr (show part)
+      submissionResult <- runner (getSubmit part (unpack output)) >>= handleSubmitError <&> show
       putStrLn submissionResult
     handleSubmitError = either (error . show) (return . snd)
 
@@ -72,9 +71,9 @@ solveAoCDay year day part1Solver part2Solver = do
 
 splitOn :: String -> String -> [String]
 splitOn delim =
-  map T.unpack
-    . T.splitOn (T.pack delim)
-    . T.pack
+  map unpack
+    . T.splitOn (pack delim)
+    . pack
 
 -- Utils
 
