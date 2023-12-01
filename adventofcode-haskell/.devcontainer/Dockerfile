@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 debian:bullseye-slim
+FROM debian:bullseye-slim
 
 ENV LANG C.UTF-8
 
@@ -32,18 +32,24 @@ RUN apt-get update \
 USER $USERNAME
 
 RUN mkdir -p "$HOME/.ghcup/bin" \
-    && curl -LJ "https://downloads.haskell.org/~ghcup/x86_64-linux-ghcup" -o "$HOME/.ghcup/bin/ghcup" \
+    && curl -LJ "https://downloads.haskell.org/~ghcup/aarch64-linux-ghcup" -o "$HOME/.ghcup/bin/ghcup" \
     && chmod +x "$HOME/.ghcup/bin/ghcup"
 ENV PATH="/home/$USERNAME/.cabal/bin:/home/$USERNAME/.ghcup/bin:$PATH"
 
 # [Choice] GHC version: recommended, latest, 9.2, 9.0, 8.10, 8.8, 8.6
 ARG GHC_VERSION="9.2.7"
+# [Choice] Cabal version: recommended, 3.6.2.0-p1
+ARG CABAL_VERSION="3.6.2.0-p1"
+# [Choice] Stack version: recommended, 2.11.1
+ARG STACK_VERSION="2.11.1"
+# [Choice] Stack version: recommended, 2.0.0.1
+ARG HLS_VERSION="2.0.0.1"
 
 # Use GHCup to install versions of main utilities
 # If you prefer to let the Haskell extension install everything on demand,
 # comment out the lines below. In that case, you may need to manually run "cabal update""."
 RUN ghcup install ghc "${GHC_VERSION}" --set \
-    && ghcup install cabal recommended --set \
-    && ghcup install stack recommended --set \
-    && ghcup install hls recommended --set \
+    && ghcup install cabal "${CABAL_VERSION}" --set \
+    && ghcup install stack "${STACK_VERSION}" --set \
+    && ghcup install hls "${HLS_VERSION}" --set \
     && cabal update
