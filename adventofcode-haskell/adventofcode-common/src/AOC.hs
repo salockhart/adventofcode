@@ -63,6 +63,7 @@ solveAoCDay year day part1Solver part2Solver = do
     getSubmit = AoCSubmit (mkDay_ day)
     reportAnswer part output runner = do
       putStr (show part)
+      putStr ": "
       submissionResult <- runner (getSubmit part (unpack output)) >>= handleSubmitError <&> show
       putStrLn submissionResult
     handleSubmitError = either (error . show) (return . snd)

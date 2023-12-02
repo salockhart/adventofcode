@@ -30,8 +30,10 @@
       "main :: IO ()",
       "main = solveAoCDay ${TM_DIRECTORY/.*?adventofcode(\\d+).*/$1/} ${TM_FILENAME_BASE/.*(..)$/$1/} part1 part2",
       "",
+      "part1 :: Text -> ()",
       "part1 = notImplemented",
       "",
+      "part2 :: Text -> ()",
       "part2 = notImplemented",
       ""
     ]
