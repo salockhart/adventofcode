@@ -26,9 +26,9 @@ input2 =
 spec :: Spec
 spec = do
   describe "Part1" $ do
-    it (unpack input1) $ do
+    it ("\n" ++ unpack input1) $ do
       part1 input1 `shouldBe` 142
 
   describe "Part2" $ do
-    it (unpack input2) $ do
+    it ("\n" ++ unpack input2) $ do
       part2 input2 `shouldBe` 281

@@ -64,8 +64,11 @@ solveAoCDay year day part1Solver part2Solver = do
     reportAnswer part output runner = do
       putStr (show part)
       putStr ": "
+      putStr (unpack output)
+      putStr " ("
       submissionResult <- runner (getSubmit part (unpack output)) >>= handleSubmitError <&> show
-      putStrLn submissionResult
+      putStr submissionResult
+      putStrLn ")"
     handleSubmitError = either (error . show) (return . snd)
 
 -- String operations
