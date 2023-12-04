@@ -24,6 +24,8 @@
       "module $TM_FILENAME_BASE (main, part1, part2) where",
       "",
       "import AOC (notImplemented, solveAoCDay)",
+      "import qualified Data.Map as M",
+      "import qualified Data.Set as S",
       "import qualified Data.Text as T",
       "",
       "main :: IO ()",
@@ -55,11 +57,11 @@
       "spec :: Spec",
       "spec = do",
       "  describe \"Part1\" $ do",
-      "    it (\"\n\" ++ T.unpack input) $ do",
+      "    it (\"\\n\" ++ T.unpack input) $ do",
       "      part1 input `shouldSatisfy` const False",
       "",
       "  describe \"Part2\" $ do",
-      "    it (\"\n\" ++ T.unpack input) $ do",
+      "    it (\"\\n\" ++ T.unpack input) $ do",
       "      part2 input `shouldSatisfy` const False",
       ""
     ]
