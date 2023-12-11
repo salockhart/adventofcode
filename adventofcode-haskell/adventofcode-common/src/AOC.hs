@@ -30,8 +30,9 @@ import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
 import qualified Data.Map as Map
 import Data.Maybe (isJust)
+import qualified Data.Set as Set
 import Data.Text (Text, pack, unpack)
-import qualified Data.Text as T
+import qualified Data.Text as Text
 import Debug.Trace (trace)
 import System.Environment (getEnv)
 
@@ -76,7 +77,7 @@ solveAoCDay year day part1Solver part2Solver = do
 splitOn :: String -> String -> [String]
 splitOn delim =
   map unpack
-    . T.splitOn (pack delim)
+    . Text.splitOn (pack delim)
     . pack
 
 -- Utils
