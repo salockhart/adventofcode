@@ -32,6 +32,7 @@ library
       Day09
       Day10
       Day11
+      Day12
   other-modules:
       Paths_adventofcode2023
   hs-source-dirs:
@@ -43,6 +44,7 @@ library
     , base >=4.7 && <5
     , containers
     , megaparsec
+    , memoize
     , parallel
     , parser-combinators
     , regex-pcre-builtin
@@ -66,6 +68,7 @@ test-suite adventofcode2023-test
       Day09Spec
       Day10Spec
       Day11Spec
+      Day12Spec
       Paths_adventofcode2023
   hs-source-dirs:
       test
@@ -79,6 +82,7 @@ test-suite adventofcode2023-test
     , hspec
     , hspec-discover
     , megaparsec
+    , memoize
     , parallel
     , parser-combinators
     , regex-pcre-builtin

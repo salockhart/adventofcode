@@ -18,6 +18,13 @@ packages:
       size: 795
   original:
     hackage: parser-combinators-1.3.0
+- completed:
+    hackage: memoize-1.1.2@sha256:d7701b55ed63434d1e8b507d0a76bb58f2fe31b7ce329132e1ca808c7001da49,1928
+    pantry-tree:
+      sha256: 8c99f1a87a270c8b8fb2238a0a94b346a986cb502753162dab909ed8b2ff44ad
+      size: 687
+  original:
+    hackage: memoize-1.1.2
 snapshots:
 - completed:
     sha256: 9fa4bece7acfac1fc7930c5d6e24606004b09e80aa0e52e9f68b148201008db9

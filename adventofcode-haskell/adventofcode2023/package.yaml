@@ -27,6 +27,7 @@ dependencies:
 - parallel
 - split
 - PSQueue
+- memoize
 
 library:
   source-dirs: src
