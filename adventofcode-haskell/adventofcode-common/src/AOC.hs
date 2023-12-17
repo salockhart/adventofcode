@@ -183,6 +183,4 @@ dbgCoordMap m =
     maxX = maximum xs
     minY = minimum ys
     maxY = maximum ys
-    getValue m x y =
-      let val = m Map.!? (x, y)
-       in if isJust val then show $ forceUnwrap val else " "
+    getValue m x y = maybe " " show (m Map.!? (x, y))
