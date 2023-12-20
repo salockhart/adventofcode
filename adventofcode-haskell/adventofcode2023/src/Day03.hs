@@ -1,14 +1,15 @@
 module Day03 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, getDiagonals, getNeighbours, parseIntoCoordMap, solveAoCDay)
+import AOC (dbg, mkAoCMain)
+import AOC.CoordMap (Coord, CoordMap, neighbours8, readCoordMap)
 import Control.Arrow (Arrow (second))
 import Data.Char (isDigit)
-import Data.List (sortOn)
+import Data.List (sortOn, union)
 import qualified Data.Map as M
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 03 part1 part2
+main = mkAoCMain 2023 03 part1 part2
 
 getValidParts :: CoordMap Char -> [(Int, [(Coord, Char)])]
 getValidParts coordMap =
@@ -16,22 +17,18 @@ getValidParts coordMap =
     []
     ((sortOn (snd . fst) . M.toList) coordMap)
   where
-    getNeighbours' c =
-      M.union
-        (getDiagonals coordMap c)
-        (getNeighbours coordMap c)
     getSymbolNeighbours =
-      M.filter (\c -> not (isDigit c) && c /= '.')
-        . foldl M.union M.empty
-        . map (getNeighbours' . fst)
+      filter (\(_, c) -> not (isDigit c) && c /= '.')
+        . foldl union []
+        . map (neighbours8 coordMap . fst)
     getValidParts' partNumbers [] = partNumbers
     getValidParts' partNumbers entryList = do
       let rest = dropWhile (not . isDigit . snd) entryList
       let (number, rest') = span (isDigit . snd) rest
-      let neighbours = getSymbolNeighbours number
+      let neighbours = dbg $ getSymbolNeighbours number
       let partNumber = read (map snd number) :: Int
       getValidParts'
-        ((partNumber, M.toList neighbours) : partNumbers)
+        ((partNumber, neighbours) : partNumbers)
         rest'
 
 part1 :: T.Text -> Int
@@ -43,7 +40,7 @@ part1 =
     . filter (not . null . snd)
     -- get all the valid parts
     . getValidParts
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack
 
@@ -62,6 +59,6 @@ part2 =
     . map (second (filter ((== '*') . snd)))
     -- get all the valid parts
     . getValidParts
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack

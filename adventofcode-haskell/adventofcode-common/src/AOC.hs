@@ -3,22 +3,16 @@ module AOC
     btoi,
     chunks,
     combinations,
-    Coord,
-    CoordMap,
     dbg,
-    dbgCoordMap,
     forceUnwrap,
-    getDiagonals,
-    getNeighbours,
     groupOn,
     maximumOn,
     median,
     minimumOn,
-    parseIntoCoordMap,
-    slice,
-    solveAoCDay,
-    splitOn,
     notImplemented,
+    slice,
+    mkAoCMain,
+    splitOn,
   )
 where
 
@@ -26,11 +20,8 @@ import Advent (AoC (AoCInput, AoCSubmit), Part (Part1, Part2), defaultAoCOpts, m
 import Control.Exception (Exception, throw)
 import qualified Data.Foldable as Foldable
 import Data.Functor ((<&>))
-import Data.List (foldl', groupBy, maximumBy, minimumBy, tails)
+import Data.List (groupBy, maximumBy, minimumBy, tails)
 import qualified Data.List as List
-import qualified Data.Map as Map
-import Data.Maybe (isJust)
-import qualified Data.Set as Set
 import Data.Text (Text, pack, unpack)
 import qualified Data.Text as Text
 import Debug.Trace (trace)
@@ -45,8 +36,8 @@ instance Exception AoCException
 notImplemented :: a
 notImplemented = throw NotImplementedException
 
-solveAoCDay :: Show a => Show b => Integer -> Integer -> (Text -> a) -> (Text -> b) -> IO ()
-solveAoCDay year day part1Solver part2Solver = do
+mkAoCMain :: Show a => Show b => Integer -> Integer -> (Text -> a) -> (Text -> b) -> IO ()
+mkAoCMain year day part1Solver part2Solver = do
   token <- getToken
 
   let runner = runAoC' token
@@ -82,11 +73,8 @@ splitOn delim =
 
 -- Utils
 
-identity :: a -> a
-identity x = x
-
 applyN :: Int -> (a -> a) -> a -> a
-applyN n f = Foldable.foldr (.) identity (List.replicate n f)
+applyN n f = Foldable.foldr (.) id (List.replicate n f)
 
 forceUnwrap :: Maybe p -> p
 forceUnwrap (Just x) = x
@@ -129,58 +117,3 @@ median xs
   where
     len = length xs
     mid = len `quot` 2
-
--- Map operations
-
-type Coord = (Int, Int)
-
-type CoordMap a = Map.Map Coord a
-
-parseIntoCoordMap :: [[a]] -> CoordMap a
-parseIntoCoordMap =
-  foldl'
-    ( \m (y, line) ->
-        Map.union
-          m
-          ( foldl'
-              (\m' (x, char) -> Map.insert (x, y) char m')
-              Map.empty
-              $ zip [0 ..] line
-          )
-    )
-    Map.empty
-    . zip [0 ..]
-
-getNeighbours :: CoordMap a -> Coord -> CoordMap a
-getNeighbours m (x, y) =
-  let candidates = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
-   in Map.map forceUnwrap $ Map.fromList $ filter (isJust . snd) $ map (\c -> (c, m Map.!? c)) candidates
-
-getDiagonals :: CoordMap a -> Coord -> CoordMap a
-getDiagonals m (x, y) =
-  let candidates = [(x - 1, y - 1), (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1)]
-   in Map.map forceUnwrap $ Map.fromList $ filter (isJust . snd) $ map (\c -> (c, m Map.!? c)) candidates
-
-dbgCoordMap :: Show a => CoordMap a -> CoordMap a
-dbgCoordMap m =
-  trace
-    ( concat
-        [ ( concat
-              [ getValue m x y ++ " "
-                | x <- [minX .. maxX]
-              ]
-          )
-            ++ "\n"
-          | y <- [minY .. maxY]
-        ]
-    )
-    m
-  where
-    coords = Map.keys m
-    xs = map fst coords
-    ys = map snd coords
-    minX = minimum xs
-    maxX = maximum xs
-    minY = minimum ys
-    maxY = maximum ys
-    getValue m x y = maybe " " show (m Map.!? (x, y))

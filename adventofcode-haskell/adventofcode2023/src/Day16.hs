@@ -2,20 +2,21 @@
 
 module Day16 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, dbgCoordMap, notImplemented, parseIntoCoordMap, solveAoCDay)
-import Data.List (sort)
+import AOC (mkAoCMain)
+import AOC.CoordMap (Coord, CoordMap, readCoordMap)
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
-import Debug.Trace (trace)
 
 type Beam = (Coord, Coord)
 
 main :: IO ()
-main = solveAoCDay 2023 16 part1 part2
+main = mkAoCMain 2023 16 part1 part2
 
+minus :: (Num a, Num b) => (a, b) -> (a, b) -> (a, b)
 minus (xB, yB) (xA, yA) = (xB - xA, yB - yA)
 
+plus :: (Num a, Num b) => (a, b) -> (a, b) -> (a, b)
 plus (xB, yB) (xA, yA) = (xB + xA, yB + yA)
 
 solve :: S.Set Beam -> CoordMap Char -> S.Set Beam
@@ -67,15 +68,16 @@ solve' history beams contraption
         movingHorizontally = xDiff /= 0 && yDiff == 0
         target = contraption M.!? beamTo
 
--- part1 :: T.Text -> ()
+part1 :: T.Text -> Int
 part1 =
   length
     . S.map fst
     . solve (S.fromList [((-1, 0), (0, 0))])
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack
 
+part2 :: T.Text -> Int
 part2 =
   maximum
     . ( \contraption ->
@@ -87,7 +89,7 @@ part2 =
             )
             (startingBeams contraption)
       )
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack
   where

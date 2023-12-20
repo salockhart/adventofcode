@@ -2,7 +2,7 @@
 
 module Day12 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (bimap)
 import Data.Function.Memoize (memoize2)
 import Data.List (intercalate)
@@ -10,7 +10,7 @@ import Data.Maybe (listToMaybe)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 12 part1 part2
+main = mkAoCMain 2023 12 part1 part2
 
 parse :: T.Text -> [(String, [Int])]
 parse =

@@ -1,12 +1,12 @@
 module Day14 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.List (elemIndex, find, groupBy, inits, sort, transpose)
 import Data.Maybe (fromJust)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 14 part1 part2
+main = mkAoCMain 2023 14 part1 part2
 
 mountainTilt :: [Char] -> [Char]
 mountainTilt = concatMap (reverse . sort) . groupBy groupStones

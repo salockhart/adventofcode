@@ -3,13 +3,14 @@
 
 module Day11 (main, part1, part2) where
 
-import AOC (CoordMap, solveAoCDay)
+import AOC (mkAoCMain)
+import AOC.CoordMap (CoordMap)
 import Data.List (foldl', transpose)
 import qualified Data.Map as M
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 11 part1 (part2 1000000)
+main = mkAoCMain 2023 11 part1 (part2 1000000)
 
 combinations2 :: [a] -> [[a]]
 combinations2 [] = []
@@ -23,7 +24,7 @@ parse :: Int -> [[Char]] -> [((Int, Int), Char)]
 parse emptyLinePenalty ls = do
   let ys = getAxisPoints emptyLinePenalty ls
   let xs = getAxisPoints emptyLinePenalty (transpose ls)
-  let m = parseIntoCoordMap' ys xs ls
+  let m = readCoordMap' ys xs ls
   M.toList $ M.filter (/= '.') m
 
 getAxisPoints :: Int -> [[Char]] -> [Int]
@@ -36,8 +37,8 @@ getAxisPoints emptyLinePenalty ls = numberLines' ls [0 ..]
           xs
           (if not $ all (== '.') x then ns else drop (emptyLinePenalty - 1) ns)
 
-parseIntoCoordMap' :: [Int] -> [Int] -> [[Char]] -> CoordMap Char
-parseIntoCoordMap' ys xs =
+readCoordMap' :: [Int] -> [Int] -> [[Char]] -> CoordMap Char
+readCoordMap' ys xs =
   foldl'
     ( \m (y, line) ->
         M.union

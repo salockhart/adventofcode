@@ -3,7 +3,7 @@
 
 module Day08 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (Bifunctor (bimap, first))
 import Data.List (uncons)
 import qualified Data.Map as M
@@ -11,7 +11,7 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 08 part1 part2
+main = mkAoCMain 2023 08 part1 part2
 
 parse :: T.Text -> (String, M.Map T.Text (T.Text, T.Text))
 parse =

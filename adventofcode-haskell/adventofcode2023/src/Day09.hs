@@ -3,7 +3,7 @@
 
 module Day09 (main, part1, part2) where
 
-import AOC (chunks, solveAoCDay)
+import AOC (chunks, mkAoCMain)
 import Data.Either (fromRight)
 import qualified Data.Text as T
 import Data.Void (Void)
@@ -12,7 +12,7 @@ import Text.Megaparsec.Char (char, newline, space)
 import Text.Megaparsec.Char.Lexer (decimal, signed)
 
 main :: IO ()
-main = solveAoCDay 2023 09 part1 part2
+main = mkAoCMain 2023 09 part1 part2
 
 parsePatterns :: Parsec Void T.Text [[Int]]
 parsePatterns = (signed space decimal `sepBy` some (char ' ')) `sepBy` newline

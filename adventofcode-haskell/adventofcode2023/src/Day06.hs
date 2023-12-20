@@ -2,7 +2,7 @@
 
 module Day06 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (bimap)
 import Data.Either (fromRight)
 import qualified Data.Text as T
@@ -10,20 +10,19 @@ import Data.Void (Void)
 import Text.Megaparsec (Parsec, parse, sepBy, skipSome, some)
 import Text.Megaparsec.Char (char, letterChar, newline, space)
 import Text.Megaparsec.Char.Lexer (decimal)
-import Text.Megaparsec.Debug (dbg)
 
 main :: IO ()
-main = solveAoCDay 2023 06 part1 part2
+main = mkAoCMain 2023 06 part1 part2
 
 type Parser = Parsec Void T.Text
 
 parseRaces :: Parser [(Int, Int)]
-parseRaces = dbg "parseRaces" $ do
+parseRaces = do
   [times, distances] <- parseLine `sepBy` newline
   return $ zip times distances
 
 parseLine :: Parser [Int]
-parseLine = dbg "parseLine" $ do
+parseLine = do
   skipSome letterChar
   skipSome $ char ':'
   space

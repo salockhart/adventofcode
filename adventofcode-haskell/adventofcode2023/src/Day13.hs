@@ -2,13 +2,13 @@
 
 module Day13 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (first)
 import Data.List (find, transpose)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 13 part1 part2
+main = mkAoCMain 2023 13 part1 part2
 
 parse :: T.Text -> [[String]]
 parse = map (lines . T.unpack) . T.splitOn "\n\n" . T.strip

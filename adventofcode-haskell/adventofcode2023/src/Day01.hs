@@ -2,13 +2,13 @@
 
 module Day01 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Char (isControl, isDigit)
 import Data.Text (Text)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 01 part1 part2
+main = mkAoCMain 2023 01 part1 part2
 
 part1 :: Text -> Int
 part1 =

@@ -2,7 +2,7 @@
 
 module Day15 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Char (ord)
 import qualified Data.Foldable as F
 import Data.Maybe (fromJust)
@@ -10,7 +10,7 @@ import qualified Data.Sequence as S
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 15 part1 part2
+main = mkAoCMain 2023 15 part1 part2
 
 hash :: [Char] -> Int
 hash = hash' 0

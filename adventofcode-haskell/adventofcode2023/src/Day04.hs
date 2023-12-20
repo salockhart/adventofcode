@@ -3,13 +3,13 @@
 
 module Day04 (main, part1, part2) where
 
-import AOC (groupOn, solveAoCDay)
+import AOC (groupOn, mkAoCMain)
 import Data.List (sortOn)
 import qualified Data.Set as S
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 04 part1 part2
+main = mkAoCMain 2023 04 part1 part2
 
 -- Card n: {winning numbers} | {chosen numbers}
 parse :: T.Text -> [S.Set T.Text]

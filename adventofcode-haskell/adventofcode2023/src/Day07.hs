@@ -2,14 +2,14 @@
 
 module Day07 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (Bifunctor (bimap), first)
 import Data.List (find, group, partition, sort, sortBy)
 import Data.Maybe (fromJust)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 07 part1 part2
+main = mkAoCMain 2023 07 part1 part2
 
 parse :: T.Text -> [(String, Int)]
 parse = map (parseRow . T.splitOn " ") . T.lines

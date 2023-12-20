@@ -2,7 +2,7 @@
 
 module Day05 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Bifunctor (first)
 import Data.Either (fromRight)
 import Data.List (sortOn)
@@ -10,7 +10,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Read as TR
 
 main :: IO ()
-main = solveAoCDay 2023 05 part1 part2
+main = mkAoCMain 2023 05 part1 part2
 
 parse :: T.Text -> ([Int], [[(Int, Int, Int)]])
 parse = parse' . filter (not . T.null) . T.lines

@@ -22,6 +22,7 @@ source-repository head
 library
   exposed-modules:
       AOC
+      AOC.CoordMap
   other-modules:
       Paths_adventofcode_common
   hs-source-dirs:

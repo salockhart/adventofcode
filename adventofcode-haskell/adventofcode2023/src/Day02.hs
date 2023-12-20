@@ -2,7 +2,7 @@
 
 module Day02 (main, part1, part2) where
 
-import AOC (solveAoCDay)
+import AOC (mkAoCMain)
 import Data.Either (rights)
 import Data.Text (Text)
 import qualified Data.Text as T
@@ -11,7 +11,7 @@ import Text.Megaparsec (Parsec, many, parse, sepBy)
 import Text.Megaparsec.Char (digitChar, letterChar, space, string)
 
 main :: IO ()
-main = solveAoCDay 2023 02 part1 part2
+main = mkAoCMain 2023 02 part1 part2
 
 type Parser = Parsec Void Text
 

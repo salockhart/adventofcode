@@ -2,14 +2,15 @@
 
 module Day10 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, forceUnwrap, parseIntoCoordMap, solveAoCDay)
+import AOC (forceUnwrap, mkAoCMain)
+import AOC.CoordMap (Coord, CoordMap, readCoordMap)
 import Data.List (find)
 import qualified Data.Map as M
 import Data.Maybe (mapMaybe)
 import qualified Data.Text as T
 
 main :: IO ()
-main = solveAoCDay 2023 10 part1 part2
+main = mkAoCMain 2023 10 part1 part2
 
 validNeighbours :: ((Int, Int), Char) -> [((Int, Int), [Char])]
 validNeighbours ((x, y), 'S') =
@@ -44,12 +45,12 @@ validNeighbours ((x, y), 'F') =
   ]
 validNeighbours _ = error "bad"
 
-findLoop :: AOC.CoordMap Char -> [(AOC.Coord, Char)]
+findLoop :: CoordMap Char -> [(Coord, Char)]
 findLoop coordMap = do
   let startPosition = forceUnwrap $ find ((== 'S') . snd) $ M.toList coordMap
   findLoop' coordMap startPosition
 
-findLoop' :: AOC.CoordMap Char -> (AOC.Coord, Char) -> [(AOC.Coord, Char)]
+findLoop' :: CoordMap Char -> (Coord, Char) -> [(Coord, Char)]
 findLoop' coordMap pos =
   let nextPlaces = getNeighbours pos
    in if null nextPlaces
@@ -78,7 +79,7 @@ shoelace = abs . (`div` 2) . sum . shoelace' . bookend
     shoelace' _ = []
 
 -- https://en.wikipedia.org/wiki/Pick%27s_theorem
-numInteriorPoints :: [AOC.Coord] -> Int -> Int
+numInteriorPoints :: [Coord] -> Int -> Int
 numInteriorPoints path area = area + 1 - (length path `div` 2)
 
 part1 :: T.Text -> Int
@@ -86,7 +87,7 @@ part1 =
   (`div` 2)
     . length
     . findLoop
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack
 
@@ -95,6 +96,6 @@ part2 =
   (\path -> numInteriorPoints path (shoelace path))
     . map fst
     . findLoop
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
     . T.unpack
