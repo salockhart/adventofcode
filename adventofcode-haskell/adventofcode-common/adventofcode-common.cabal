@@ -23,6 +23,9 @@ library
   exposed-modules:
       AOC
       AOC.CoordMap
+      AOC.Data.List
+      AOC.Data.String
+      AOC.Data.Tuple
       AOC.Pathing.AStar
       AOC.Pathing.Dijkstra
       AOC.Pathing.Internal

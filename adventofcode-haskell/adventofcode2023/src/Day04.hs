@@ -3,7 +3,8 @@
 
 module Day04 (main, part1, part2) where
 
-import AOC (groupOn, mkAoCMain)
+import AOC (mkAoCMain)
+import AOC.Data.List (groupOn)
 import Data.List (sortOn)
 import qualified Data.Set as S
 import qualified Data.Text as T

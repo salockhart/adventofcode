@@ -3,7 +3,8 @@
 
 module Day09 (main, part1, part2) where
 
-import AOC (chunks, mkAoCMain)
+import AOC (mkAoCMain)
+import AOC.Data.List (chunks)
 import Data.Either (fromRight)
 import qualified Data.Text as T
 import Data.Void (Void)

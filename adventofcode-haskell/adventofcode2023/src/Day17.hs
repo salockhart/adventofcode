@@ -1,7 +1,8 @@
 module Day17 (main, part1, part2) where
 
-import AOC (fstOf3, mkAoCMain, sndOf3)
+import AOC (mkAoCMain)
 import AOC.CoordMap (readCoordMap)
+import AOC.Data.Tuple (fstOf3, sndOf3)
 import AOC.Pathing.Dijkstra (dijkstra)
 import Data.Bifunctor (Bifunctor (first), second)
 import qualified Data.Map as M
