@@ -2,11 +2,11 @@
 
 module Day10 (main, part1, part2) where
 
-import AOC (forceUnwrap, mkAoCMain)
+import AOC (mkAoCMain)
 import AOC.CoordMap (Coord, CoordMap, readCoordMap)
 import Data.List (find)
 import qualified Data.Map as M
-import Data.Maybe (mapMaybe)
+import Data.Maybe (fromJust, mapMaybe)
 import qualified Data.Text as T
 
 main :: IO ()
@@ -47,7 +47,7 @@ validNeighbours _ = error "bad"
 
 findLoop :: CoordMap Char -> [(Coord, Char)]
 findLoop coordMap = do
-  let startPosition = forceUnwrap $ find ((== 'S') . snd) $ M.toList coordMap
+  let startPosition = fromJust $ find ((== 'S') . snd) $ M.toList coordMap
   findLoop' coordMap startPosition
 
 findLoop' :: CoordMap Char -> (Coord, Char) -> [(Coord, Char)]

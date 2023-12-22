@@ -4,14 +4,15 @@ module AOC
     chunks,
     combinations,
     dbg,
-    forceUnwrap,
+    fstOf3,
     groupOn,
     maximumOn,
     median,
     minimumOn,
+    mkAoCMain,
     notImplemented,
     slice,
-    mkAoCMain,
+    sndOf3,
     splitOn,
   )
 where
@@ -76,15 +77,15 @@ splitOn delim =
 applyN :: Int -> (a -> a) -> a -> a
 applyN n f = Foldable.foldr (.) id (List.replicate n f)
 
-forceUnwrap :: Maybe p -> p
-forceUnwrap (Just x) = x
-forceUnwrap Nothing = error "cannot unwrap"
-
 dbg :: Show a => a -> a
 dbg x = trace (show x) x
 
 btoi :: [Int] -> Int
 btoi = sum . zipWith (\i x -> x * (2 ^ i)) [0 ..] . reverse
+
+fstOf3 (a, _, _) = a
+
+sndOf3 (_, b, _) = b
 
 -- List operations
 

@@ -23,13 +23,17 @@ library
   exposed-modules:
       AOC
       AOC.CoordMap
+      AOC.Pathing.AStar
+      AOC.Pathing.Dijkstra
+      AOC.Pathing.Internal
   other-modules:
       Paths_adventofcode_common
   hs-source-dirs:
       src
   ghc-options: -Wall
   build-depends:
-      advent-of-code-api
+      PSQueue
+    , advent-of-code-api
     , base >=4.7 && <5
     , containers
     , text

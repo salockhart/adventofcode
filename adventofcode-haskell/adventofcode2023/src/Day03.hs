@@ -20,7 +20,7 @@ getValidParts coordMap =
     getSymbolNeighbours =
       filter (\(_, c) -> not (isDigit c) && c /= '.')
         . foldl union []
-        . map (neighbours8 coordMap . fst)
+        . map ((`neighbours8` coordMap) . fst)
     getValidParts' partNumbers [] = partNumbers
     getValidParts' partNumbers entryList = do
       let rest = dropWhile (not . isDigit . snd) entryList
