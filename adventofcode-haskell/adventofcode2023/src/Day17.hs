@@ -2,6 +2,7 @@ module Day17 (main, part1, part2) where
 
 import AOC (mkAoCMain)
 import AOC.CoordMap (readCoordMap)
+import AOC.Data.List (mapWithPrevious)
 import AOC.Data.Tuple (fstOf3, sndOf3)
 import AOC.Pathing.Dijkstra (dijkstra)
 import Data.Bifunctor (Bifunctor (first), second)
@@ -21,14 +22,6 @@ type CoordWithDirection = (Int, Int, Direction)
 
 main :: IO ()
 main = mkAoCMain 2023 17 part1 part2
-
-mapWithPrevious :: (a -> a -> a) -> [a] -> [a]
-mapWithPrevious _ [] = []
-mapWithPrevious fn xs = head xs : mapWithPrevious' xs
-  where
-    mapWithPrevious' [] = []
-    mapWithPrevious' [_] = []
-    mapWithPrevious' (a : b : rest) = let b' = fn a b in b' : mapWithPrevious' (b' : rest)
 
 parse :: T.Text -> M.Map CoordWithDirection Int
 parse =

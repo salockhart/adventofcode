@@ -2,6 +2,17 @@ module AOC.Data.List where
 
 import Data.List (groupBy, maximumBy, minimumBy, tails)
 
+-- | Decompose a list into 'init' and 'last'.
+--
+-- * If the list is empty, returns 'Nothing'.
+-- * If the list is non-empty, returns @'Just' (xs, x)@,
+-- where @xs@ is the 'init'ial part of the list and @x@ is its 'last' element.
+--
+-- See also: https://hackage.haskell.org/package/base-4.19.0.0/docs/Data-List.html#v:unsnoc
+unsnoc :: [a] -> Maybe ([a], a)
+unsnoc = foldr (\x -> Just . maybe ([], x) (\(~(a, b)) -> (x : a, b))) Nothing
+{-# INLINEABLE unsnoc #-}
+
 groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
 groupOn f = groupBy ((==) `on2` f)
   where
@@ -31,3 +42,11 @@ median xs
   where
     len = length xs
     mid = len `quot` 2
+
+mapWithPrevious :: (a -> a -> a) -> [a] -> [a]
+mapWithPrevious _ [] = []
+mapWithPrevious fn xs = head xs : mapWithPrevious' xs
+  where
+    mapWithPrevious' [] = []
+    mapWithPrevious' [_] = []
+    mapWithPrevious' (a : b : rest) = let b' = fn a b in b' : mapWithPrevious' (b' : rest)

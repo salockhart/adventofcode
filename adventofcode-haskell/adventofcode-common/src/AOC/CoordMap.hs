@@ -1,28 +1,4 @@
-module AOC.CoordMap
-  ( Coord,
-    CoordMap,
-    dbgCoordMap,
-    dbgCoordMap',
-    diagonals,
-    east,
-    inDirections,
-    lookupManyWithKey,
-    lookupWithKey,
-    manhattan,
-    neighbours4,
-    neighbours8,
-    north,
-    northeast,
-    northwest,
-    readCoordMap,
-    south,
-    southeast,
-    southwest,
-    traceCoordMap,
-    traceCoordMap',
-    west,
-  )
-where
+module AOC.CoordMap where
 
 import Data.List (foldl', union)
 import qualified Data.Map as Map
@@ -92,6 +68,37 @@ neighbours8 coord m = neighbours4 coord m `union` diagonals coord m
 
 manhattan :: Coord -> Coord -> Int
 manhattan (ax, ay) (bx, by) = abs (bx - ax) + abs (by - ay)
+
+-- |
+-- Returns the area of the polygon described by the provided
+-- list of points.
+--
+-- See also: https://en.wikipedia.org/wiki/Shoelace_formula
+shoelaceTheorem :: [Coord] -> Int
+shoelaceTheorem = abs . (`div` 2) . sum . shoelace' . bookend
+  where
+    bookend xs = last xs : xs
+    shoelace' ((x0, y0) : p1@(x1, y1) : rest) =
+      ((y0 + y1) * (x0 - x1)) : shoelace' (p1 : rest)
+    shoelace' _ = []
+
+-- |
+-- Returns the number of points internal to the polygon described
+-- by the provided list of points.
+--
+-- Note: this requires that the list of points describes *all* points
+-- on the boundary of the polygon. If it only provides vertices and not
+-- any points that lie on the edges between them, this will be incorrect.
+--
+-- See also: https://en.wikipedia.org/wiki/Pick%27s_theorem
+picksTheorem :: [Coord] -> Int
+picksTheorem path = picksTheorem' (shoelaceTheorem path) (length path)
+
+-- |
+-- A variant of 'picksTheorem' that allows for passing the values for area
+-- and the number of boundary points directly.
+picksTheorem' :: Int -> Int -> Int
+picksTheorem' area numBoundary = area + 1 - (numBoundary `div` 2)
 
 traceCoordMap :: Show a => CoordMap a -> c -> c
 traceCoordMap m = traceCoordMap' m (const (Nothing :: Maybe String))

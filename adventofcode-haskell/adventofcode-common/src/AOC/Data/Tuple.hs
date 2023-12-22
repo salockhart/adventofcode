@@ -5,3 +5,9 @@ fstOf3 (a, _, _) = a
 
 sndOf3 :: (a, b, c) -> b
 sndOf3 (_, b, _) = b
+
+trdOf3 :: (a, b, c) -> c
+trdOf3 (_, _, c) = c
+
+take2Of3 :: (a, b, c) -> (a, b)
+take2Of3 (a, b, _) = (a, b)

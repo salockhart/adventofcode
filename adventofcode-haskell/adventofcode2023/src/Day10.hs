@@ -3,7 +3,7 @@
 module Day10 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.CoordMap (Coord, CoordMap, readCoordMap)
+import AOC.CoordMap (Coord, CoordMap, picksTheorem, readCoordMap)
 import Data.List (find)
 import qualified Data.Map as M
 import Data.Maybe (fromJust, mapMaybe)
@@ -69,19 +69,6 @@ findLoop' coordMap pos =
                   else Nothing
             )
 
--- https://en.wikipedia.org/wiki/Shoelace_formula
-shoelace :: [(Int, Int)] -> Int
-shoelace = abs . (`div` 2) . sum . shoelace' . bookend
-  where
-    bookend xs = last xs : xs
-    shoelace' ((x0, y0) : p1@(x1, y1) : rest) =
-      ((y0 + y1) * (x0 - x1)) : shoelace' (p1 : rest)
-    shoelace' _ = []
-
--- https://en.wikipedia.org/wiki/Pick%27s_theorem
-numInteriorPoints :: [Coord] -> Int -> Int
-numInteriorPoints path area = area + 1 - (length path `div` 2)
-
 part1 :: T.Text -> Int
 part1 =
   (`div` 2)
@@ -93,7 +80,7 @@ part1 =
 
 part2 :: T.Text -> Int
 part2 =
-  (\path -> numInteriorPoints path (shoelace path))
+  picksTheorem
     . map fst
     . findLoop
     . readCoordMap
