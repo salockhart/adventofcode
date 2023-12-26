@@ -1,5 +1,10 @@
 module AOC.Data.Tuple where
 
+fromList2 :: [b] -> (b, b)
+fromList2 [] = error "cannot construct a tuple from an empty list"
+fromList2 [_] = error "cannot construct a tuple from a single element list"
+fromList2 (a : b : _) = (a, b)
+
 fstOf3 :: (a, b, c) -> a
 fstOf3 (a, _, _) = a
 
