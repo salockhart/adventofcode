@@ -10,6 +10,9 @@ import qualified Data.Map as M
 import Data.Maybe (fromJust)
 import qualified Data.Text as T
 
+main :: IO ()
+main = mkAoCMain 2023 17 part1 part2
+
 data Direction = Horizontal | Vertical
   deriving (Show, Ord)
 
@@ -19,9 +22,6 @@ instance Eq Direction where
   _ == _ = False
 
 type CoordWithDirection = (Int, Int, Direction)
-
-main :: IO ()
-main = mkAoCMain 2023 17 part1 part2
 
 parse :: T.Text -> M.Map CoordWithDirection Int
 parse =

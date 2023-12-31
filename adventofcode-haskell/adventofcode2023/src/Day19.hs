@@ -18,6 +18,9 @@ import Text.Megaparsec (Parsec, parse, some, try, (<|>))
 import Text.Megaparsec.Char (char, letterChar, string)
 import Text.Megaparsec.Char.Lexer (decimal)
 
+main :: IO ()
+main = mkAoCMain 2023 19 part1 part2
+
 type Part = (Int, Int, Int, Int)
 
 type PartRange = ((Int, Int), (Int, Int), (Int, Int), (Int, Int))
@@ -80,9 +83,6 @@ parsePart = do
   s <- decimal
   _ <- string "}"
   return (x, m, a, s)
-
-main :: IO ()
-main = mkAoCMain 2023 19 part1 part2
 
 executeWorkflow :: String -> M.Map String Workflow -> Part -> Bool
 executeWorkflow name defined part@(x, m, a, s) = applyWorkflow (defined M.! name)

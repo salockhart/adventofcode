@@ -24,6 +24,7 @@ library
       AOC
       AOC.CoordMap
       AOC.Data.List
+      AOC.Data.Map
       AOC.Data.String
       AOC.Data.Tuple
       AOC.Pathing.AStar

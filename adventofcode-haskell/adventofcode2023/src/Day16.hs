@@ -8,10 +8,10 @@ import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
 
-type Beam = (Coord, Coord)
-
 main :: IO ()
 main = mkAoCMain 2023 16 part1 part2
+
+type Beam = (Coord, Coord)
 
 minus :: (Num a, Num b) => (a, b) -> (a, b) -> (a, b)
 minus (xB, yB) (xA, yA) = (xB - xA, yB - yA)

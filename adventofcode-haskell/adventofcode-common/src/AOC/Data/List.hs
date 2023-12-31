@@ -30,6 +30,11 @@ slice from to xs = take (to - from + 1) (drop from xs)
 chunks :: Int -> [a] -> [[a]]
 chunks n cs = [slice i (i + n - 1) cs | i <- [0 .. (length cs - n)]]
 
+windows :: Int -> [a] -> [[a]]
+windows _ [] = []
+windows _ [_] = []
+windows n xs = take n xs : windows n (drop 1 xs)
+
 combinations :: [a] -> [[a]]
 combinations [] = [[]]
 combinations xs = [] : concat [map (x :) $ combinations xs' | (x : xs') <- tails xs]
