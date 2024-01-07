@@ -1,6 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TupleSections #-}
-
 module Day20 (main, part1, part2) where
 
 import AOC (mkAoCMain)

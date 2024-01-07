@@ -19,8 +19,6 @@
     "scope": "haskell",
     "prefix": "advent",
     "body": [
-      "{-# LANGUAGE OverloadedStrings #-}",
-      "",
       "module $TM_FILENAME_BASE (main, part1, part2) where",
       "",
       "import AOC (mkAoCMain, notImplemented)",
@@ -43,8 +41,6 @@
     "scope": "haskell",
     "prefix": "adventspec",
     "body": [
-      "{-# LANGUAGE OverloadedStrings #-}",
-      "",
       "module $TM_FILENAME_BASE (spec) where",
       "",
       "import qualified Data.Text as T",

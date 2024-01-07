@@ -45,6 +45,9 @@ library
       Paths_adventofcode2023
   hs-source-dirs:
       src
+  default-extensions:
+      OverloadedStrings
+      TupleSections
   ghc-options: -Wall
   build-depends:
       PSQueue
@@ -88,6 +91,9 @@ test-suite adventofcode2023-test
       Paths_adventofcode2023
   hs-source-dirs:
       test
+  default-extensions:
+      OverloadedStrings
+      TupleSections
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       PSQueue

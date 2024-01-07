@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Day15Spec (spec) where
 
 import qualified Data.Text as T

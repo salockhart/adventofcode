@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Day01Spec (spec) where
 
 import Data.Text (Text, unpack)

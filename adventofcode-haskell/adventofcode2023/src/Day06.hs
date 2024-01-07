@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Day06 (main, part1, part2) where
 
 import AOC (mkAoCMain)
