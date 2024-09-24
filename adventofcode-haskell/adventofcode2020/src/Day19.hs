@@ -1,6 +1,6 @@
 module Day19 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.Either (rights)
 import qualified Data.IntMap as Map
 import Data.List (find, foldl', isSuffixOf)
@@ -68,8 +68,8 @@ stripRule aRule bRule s m index
   | index == aRule = [tail s | head s == 'a']
   | index == bRule = [tail s | head s == 'b']
   | otherwise = do
-    let (Just r) = Map.lookup index m
-    concatMap (stripRuleSeq aRule bRule s m) r
+      let (Just r) = Map.lookup index m
+      concatMap (stripRuleSeq aRule bRule s m) r
 
 stripRuleSeq :: Int -> Int -> String -> Map.IntMap [[Int]] -> [Int] -> [String]
 stripRuleSeq _ _ s _ [] = [s]

@@ -1,6 +1,6 @@
 module Day13 (main, part1, part2) where
 
-import AOC (dbgCoordMap, splitOn)
+import AOC.Data.String (splitOn)
 import qualified Data.Map as Map
 import Data.Set (Set)
 import qualified Data.Set as Set
@@ -39,6 +39,5 @@ part2 = show . solve . parse
   where
     solve (coords, folds) =
       length $
-        dbgCoordMap $
-          Map.fromSet (const '#') $
-            foldl applyFold coords folds
+        Map.fromSet (const '#') $
+          foldl applyFold coords folds

@@ -1,30 +1,28 @@
 module Day09 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, getNeighbours, parseIntoCoordMap)
+import AOC.CoordMap (Coord, CoordMap, neighbours4, readCoordMap)
 import Data.List (sort)
 import qualified Data.Map as Map
-import Data.Maybe (mapMaybe)
-import Debug.Trace (trace)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 
-parse :: String -> AOC.CoordMap Int
-parse = parseIntoCoordMap . map (map (\c -> read [c])) . lines
+parse :: String -> CoordMap Int
+parse = readCoordMap . map (map (\c -> read [c])) . lines
 
-getHigherNeighbours :: AOC.CoordMap Int -> (Coord, Int) -> AOC.CoordMap Int
-getHigherNeighbours cm (coord, me) = Map.filter (> me) $ getNeighbours cm coord
+getHigherNeighbours :: CoordMap Int -> (Coord, Int) -> CoordMap Int
+getHigherNeighbours cm (coord, me) = Map.filter (> me) $ Map.fromList $ neighbours4 coord cm
 
-findLowPoints :: AOC.CoordMap Int -> AOC.CoordMap Int
+findLowPoints :: CoordMap Int -> CoordMap Int
 findLowPoints cm = Map.filterWithKey isLowPoint cm
   where
     isLowPoint coord me = do
-      let neighbours = getNeighbours cm coord
+      let neighbours = Map.fromList $ neighbours4 coord cm
       let higherNeighbours = getHigherNeighbours cm (coord, me)
       neighbours == higherNeighbours
 
 getBasin :: Map.Map Coord Int -> (Coord, Int) -> [(Coord, Int)]
-getBasin cm (coord, 9) = []
+getBasin _ (_, 9) = []
 getBasin cm (coord, me) = do
   let higherNeighbours = getHigherNeighbours cm (coord, me)
   (coord, me) : concatMap (getBasin cm) (Map.toList higherNeighbours)

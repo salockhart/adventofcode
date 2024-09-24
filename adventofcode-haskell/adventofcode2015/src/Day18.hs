@@ -1,6 +1,6 @@
 module Day18 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, parseIntoCoordMap)
+import AOC.CoordMap (Coord, CoordMap, readCoordMap)
 import Data.List (foldl', nub)
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe, mapMaybe)
@@ -51,7 +51,7 @@ part1 n =
     . length
     . execute n
     . Map.filter (== '#')
-    . parseIntoCoordMap
+    . readCoordMap
     . lines
 
 part2 :: Int -> String -> String
@@ -64,5 +64,5 @@ part2 n =
     . Map.insert (0, 99) '#'
     . Map.insert (99, 0) '#'
     . Map.insert (99, 99) '#'
-    . parseIntoCoordMap
+    . readCoordMap
     . lines

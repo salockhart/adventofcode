@@ -1,14 +1,13 @@
 module Day10 (main, part1, part2) where
 
-import AOC (forceUnwrap, median)
+import AOC.Data.List (median)
 import Data.List (sort)
-import Data.Maybe (isJust, isNothing, mapMaybe)
-import Data.Void (Void)
-import Debug.Trace (trace)
+import Data.Maybe (fromJust, isJust, isNothing, mapMaybe)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 
+closingAtomOf :: Char -> Char
 closingAtomOf '(' = ')'
 closingAtomOf '[' = ']'
 closingAtomOf '{' = '}'
@@ -41,7 +40,7 @@ part1 =
 part2 :: String -> String
 part2 =
   show
-    . forceUnwrap
+    . fromJust
     . median
     . sort
     . map (foldl score 0 . unwind . fst)

@@ -1,10 +1,9 @@
 module Day14 (main, part1, part2) where
 
-import AOC (applyN, chunks, splitOn)
+import AOC.Data.List (chunks)
+import AOC.Data.String (splitOn)
 import Data.List (group, sort)
 import qualified Data.Map as Map
-import Data.Maybe (catMaybes, isJust)
-import Debug.Trace (trace)
 
 type State = ([Char], Map.Map [Char] Char)
 

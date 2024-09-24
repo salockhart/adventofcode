@@ -1,6 +1,6 @@
 module Day22 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 
 type Game = ([Int], [Int])
 
@@ -26,9 +26,9 @@ play' _ (as, []) = (as, [])
 play' history game@(a : as, b : bs)
   | game `elem` history = (fst game, [])
   | a <= length as && b <= length bs =
-    case play' [] (take a as, take b bs) of
-      (_, []) -> play' (game : history) (as ++ [a, b], bs)
-      ([], _) -> play' (game : history) (as, bs ++ [b, a])
+      case play' [] (take a as, take b bs) of
+        (_, []) -> play' (game : history) (as ++ [a, b], bs)
+        ([], _) -> play' (game : history) (as, bs ++ [b, a])
   | a > b = play' (game : history) (as ++ [a, b], bs)
   | otherwise = play' (game : history) (as, bs ++ [b, a])
 

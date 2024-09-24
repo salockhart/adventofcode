@@ -1,10 +1,9 @@
 module Day04 (main, part1, part2) where
 
-import AOC (forceUnwrap, slice, splitOn)
-import Data.Bits (Bits (xor))
-import Data.List (elemIndex, findIndex, transpose)
-import Data.Maybe (fromMaybe, isJust, isNothing)
-import Debug.Trace (trace)
+import AOC.Data.List (slice)
+import AOC.Data.String (splitOn)
+import Data.List (elemIndex, transpose)
+import Data.Maybe (fromJust, isNothing)
 
 type Row = [Int]
 
@@ -26,12 +25,12 @@ winningLines = map (\b -> b ++ transpose b)
 
 solve sf (ns, bs) = score winningBoard
   where
-    timeForRowToWin = forceUnwrap . maximum . map (`elemIndex` ns)
+    timeForRowToWin = fromJust . maximum . map (`elemIndex` ns)
     timeForBoardToWin = minimum . map timeForRowToWin
     winningBoard = do
       let boardWinTimes = map timeForBoardToWin $ winningLines bs
-      let winningBoard = (\ts -> forceUnwrap $ elemIndex (sf ts) ts) boardWinTimes
-      (winningBoard, boardWinTimes !! winningBoard)
+      let winningBoard' = (\ts -> fromJust $ elemIndex (sf ts) ts) boardWinTimes
+      (winningBoard', boardWinTimes !! winningBoard')
     score (wi, wt) = do
       let drawnNumbers = slice 0 wt ns
       let board = bs !! wi

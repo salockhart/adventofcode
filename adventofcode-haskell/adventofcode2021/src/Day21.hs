@@ -1,8 +1,5 @@
 module Day21 (main, part1, part2) where
 
-import AOC (dbg)
-import Debug.Trace (trace)
-
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 

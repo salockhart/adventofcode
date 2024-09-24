@@ -1,6 +1,6 @@
 module Day21 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (find, foldl', intercalate, sortOn)
 import qualified Data.Map as Map
 import qualified Data.Set as Set

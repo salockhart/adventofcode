@@ -2,7 +2,8 @@
 
 module Day20 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, btoi, parseIntoCoordMap)
+import AOC (btoi)
+import AOC.CoordMap (CoordMap, readCoordMap)
 import Data.List.Split (splitOn)
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
@@ -13,7 +14,7 @@ main = interact (show . \input -> (part1 input, part2 input))
 parse :: String -> ([Int], CoordMap Int)
 parse s =
   let (a : img : _) = splitOn "\n\n" s
-   in (map charToInt a, addPadding 0 $ parseIntoCoordMap $ map (map charToInt) $ lines img)
+   in (map charToInt a, addPadding 0 $ readCoordMap $ map (map charToInt) $ lines img)
   where
     charToInt '.' = 0
     charToInt '#' = 1

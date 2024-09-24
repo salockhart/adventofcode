@@ -1,6 +1,6 @@
 module Day17 (main, part1, part2) where
 
-import AOC (combinations)
+import AOC.Data.List (combinations)
 import Data.List (sortOn)
 
 main :: IO ()

@@ -12,7 +12,7 @@ module Day04
   )
 where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (isInfixOf)
 import Text.Regex.PCRE ((=~))
 

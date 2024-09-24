@@ -1,6 +1,6 @@
 module Day15 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Control.Monad
 import Control.Monad.ST
 import Data.List as List
@@ -26,10 +26,10 @@ run :: Int -> (MVector.MVector s Int) -> Int -> Int -> ST s Int
 run n v last pos
   | pos == n = pure last
   | otherwise = do
-    prevPos <- MVector.read v last
-    diff <- pure $ if prevPos == (-1) then 0 else (pos - prevPos)
-    MVector.write v last pos
-    run n v diff (pos + 1)
+      prevPos <- MVector.read v last
+      diff <- pure $ if prevPos == (-1) then 0 else (pos - prevPos)
+      MVector.write v last pos
+      run n v diff (pos + 1)
 
 getNth :: Int -> [(Int, Int)] -> Int -> Int -> Int
 getNth n init last pos =

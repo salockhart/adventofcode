@@ -1,23 +1,14 @@
 module Day11 (main, part1, part2) where
 
-import AOC
-  ( Coord,
-    CoordMap,
-    applyN,
-    dbgCoordMap,
-    getDiagonals,
-    getNeighbours,
-    parseIntoCoordMap,
-  )
-import Data.List (nub, sort)
+import AOC.CoordMap (Coord, CoordMap, neighbours8, readCoordMap)
+import Data.List (nub)
 import qualified Data.Map as Map
-import Debug.Trace (trace)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 
 parse :: String -> CoordMap Int
-parse = parseIntoCoordMap . map (map (\c -> read [c])) . lines
+parse = readCoordMap . map (map (\c -> read [c])) . lines
 
 incrementCoords :: CoordMap Int -> [Coord] -> CoordMap Int
 incrementCoords m cs =
@@ -31,7 +22,7 @@ incrementCoords m cs =
 getAllNeighbours :: CoordMap Int -> [Coord] -> [Coord]
 getAllNeighbours m = concatMap (Map.keys . getRing) . nub
   where
-    getRing c = getNeighbours m c `Map.union` getDiagonals m c
+    getRing c = Map.fromList $ neighbours8 c m
 
 handleFlashed :: CoordMap Int -> (CoordMap Int, [Coord])
 handleFlashed m =

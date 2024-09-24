@@ -2,9 +2,7 @@
 
 module Day06 (main, part1, part2) where
 
-import AOC (splitOn)
-import Data.List (foldl', group, sort)
-import Debug.Trace (trace)
+import AOC.Data.String (splitOn)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))

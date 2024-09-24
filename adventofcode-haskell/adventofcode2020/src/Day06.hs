@@ -1,6 +1,6 @@
 module Day06 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (intersect, union)
 
 main :: IO ()

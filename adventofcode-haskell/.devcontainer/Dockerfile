@@ -18,15 +18,14 @@ RUN apt-get update \
     && /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" "true" "true"\
     && rm -rf /tmp/library-scripts \
     && apt-get install -y --no-install-recommends \
-        dpkg-dev \
-        gcc \
-        libc6-dev \
-        libffi-dev \
+        build-essential \
         libgmp-dev \
         libnuma-dev \
         libtinfo-dev \
         zlib1g-dev \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install latest GHCup in the non-root user home
 USER $USERNAME
@@ -37,13 +36,13 @@ RUN mkdir -p "$HOME/.ghcup/bin" \
 ENV PATH="/home/$USERNAME/.cabal/bin:/home/$USERNAME/.ghcup/bin:$PATH"
 
 # [Choice] GHC version: recommended, latest, 9.2, 9.0, 8.10, 8.8, 8.6
-ARG GHC_VERSION="9.2.7"
+ARG GHC_VERSION="recommended"
 # [Choice] Cabal version: recommended, 3.6.2.0-p1
-ARG CABAL_VERSION="3.6.2.0-p1"
+ARG CABAL_VERSION="recommended"
 # [Choice] Stack version: recommended, 2.11.1
-ARG STACK_VERSION="2.11.1"
+ARG STACK_VERSION="recommended"
 # [Choice] Stack version: recommended, 2.0.0.1
-ARG HLS_VERSION="2.0.0.1"
+ARG HLS_VERSION="recommended"
 
 # Use GHCup to install versions of main utilities
 # If you prefer to let the Haskell extension install everything on demand,

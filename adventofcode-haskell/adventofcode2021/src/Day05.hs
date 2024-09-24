@@ -2,7 +2,7 @@
 
 module Day05 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (group, sort)
 
 main :: IO ()
@@ -20,14 +20,14 @@ expand =
       | otherwise = getDiagonalLine line
     getHorizontalLine ((x1 : y1 : _) : (x2 : y2 : _) : _) =
       [ (x, y)
-        | x <- [minimum [x1, x2] .. maximum [x1, x2]],
-          y <- [minimum [y1, y2] .. maximum [y1, y2]]
-        ]
+        | x <- [(min x1 x2) .. (max x1 x2)],
+          y <- [(min y1 y2) .. (max y1 y2)]
+      ]
     getDiagonalLine ((x1 : y1 : _) : (x2 : y2 : _) : _) = do
       let slope = quot (y2 - y1) (x2 - x1)
       let intersect = y2 - slope * x2
-      [(x, (slope * x) + intersect)
-        | x <- [minimum [x1, x2] .. maximum [x1, x2]]
+      [ (x, (slope * x) + intersect)
+        | x <- [(min x1 x2) .. (max x1 x2)]
         ]
 
 isNotDiagonal :: [[Int]] -> Bool

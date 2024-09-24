@@ -2,7 +2,8 @@
 
 module Day21 (main, part1, part2) where
 
-import AOC (combinations, splitOn)
+import AOC.Data.List (combinations)
+import AOC.Data.String (splitOn)
 import Data.Tuple.Utils (thd3)
 
 data Mob = Mob
@@ -96,11 +97,11 @@ fight (enemy, me, c)
   | hp enemy <= 0 = True
   | hp me <= 0 = False
   | otherwise =
-    fight
-      ( enemy {hp = hp enemy - damageDealt me enemy},
-        me {hp = hp me - damageDealt enemy me},
-        c
-      )
+      fight
+        ( enemy {hp = hp enemy - damageDealt me enemy},
+          me {hp = hp me - damageDealt enemy me},
+          c
+        )
   where
     damageDealt :: Mob -> Mob -> Int
     damageDealt by to = max 1 (mobDamage by - mobArmor to)

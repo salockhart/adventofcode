@@ -1,6 +1,6 @@
 module Day16 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import qualified Control.Arrow as Data.Bifunctor
 import Data.List (isPrefixOf, sortBy)
 import Text.Regex.PCRE ((=~))

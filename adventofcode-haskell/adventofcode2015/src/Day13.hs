@@ -1,6 +1,6 @@
 module Day13 (main, part1, part2) where
 
-import AOC (chunks, maximumOn)
+import AOC.Data.List (chunks, maximumOn)
 import Data.List (foldl', nub, permutations)
 import qualified Data.Map as Map
 import Text.Regex.PCRE ((=~))

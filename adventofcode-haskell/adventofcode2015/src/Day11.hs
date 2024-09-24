@@ -1,6 +1,6 @@
 module Day11 (main, part1, part2) where
 
-import AOC (chunks)
+import AOC.Data.List (chunks)
 import Data.Char (chr, ord)
 import Data.List (find, group)
 import Data.Maybe (isJust)

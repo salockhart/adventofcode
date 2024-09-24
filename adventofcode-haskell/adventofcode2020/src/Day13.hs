@@ -1,6 +1,6 @@
 module Day13 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import qualified Data.Bifunctor as Bifunctor
 import Data.List (sort)
 

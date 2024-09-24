@@ -1,6 +1,6 @@
 module Day07 (main, part1, part2) where
 
-import AOC (splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (find)
 import qualified Data.Set as Set
 import Text.Regex.PCRE ((=~))

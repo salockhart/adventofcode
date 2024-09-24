@@ -1,7 +1,6 @@
 module Day02 (main, part1, part2) where
 
-import AOC (combinations, groupOn)
-import Data.List (find, permutations)
+import Data.List (find)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))

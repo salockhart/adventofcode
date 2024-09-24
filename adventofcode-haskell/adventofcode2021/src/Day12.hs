@@ -2,7 +2,7 @@ module Day12 (main, part1, part2) where
 
 -- with help from https://gitlab.com/sakisan/adventofcode/-/blob/2021/Haskell/Day12.hs
 
-import AOC (dbg, splitOn)
+import AOC.Data.String (splitOn)
 import Data.Char (isLower)
 import Data.Map (Map)
 import qualified Data.Map as Map

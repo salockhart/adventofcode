@@ -1,6 +1,7 @@
 module Day20 (main, part1, part2, tileToInts) where
 
-import AOC (groupOn, slice, splitOn)
+import AOC.Data.List (groupOn, slice)
+import AOC.Data.String (splitOn)
 import Data.List (groupBy, nub, sort, sortBy, sortOn, transpose)
 import qualified Data.Map as Map
 import Data.Maybe (mapMaybe)

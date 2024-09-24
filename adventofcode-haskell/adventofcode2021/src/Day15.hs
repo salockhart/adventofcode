@@ -1,17 +1,17 @@
 module Day15 (main, part1, part2) where
 
-import AOC (Coord, CoordMap, dbg, dbgCoordMap, forceUnwrap, getNeighbours, parseIntoCoordMap)
+import AOC.CoordMap (Coord, CoordMap, neighbours4, readCoordMap)
 import qualified Data.Map as Map
-import Data.Maybe (fromMaybe, mapMaybe)
+import Data.Maybe (fromJust, fromMaybe)
 import qualified Data.PSQueue as PSQ
-import Debug.Trace (trace)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
 
 parse :: String -> CoordMap Int
-parse = parseIntoCoordMap . map (map (\x -> read [x])) . lines
+parse = readCoordMap . map (map (\x -> read [x])) . lines
 
+bounds :: (Ord a, Ord b) => [(a, b)] -> (a, b)
 bounds coords =
   ( (maximum . map fst) coords,
     (maximum . map snd) coords
@@ -65,25 +65,25 @@ dijkstra source target g =
   where
     dijkstra' target g dists queue
       | PSQ.null queue = dists
-      | PSQ.key (forceUnwrap $ PSQ.findMin queue) == target = dists
+      | PSQ.key (fromJust $ PSQ.findMin queue) == target = dists
       | otherwise =
-        let next = forceUnwrap $ PSQ.findMin queue
-            nextKey = PSQ.key next
-            distanceToCurrent = dists Map.! nextKey
-            (dists', queue'') =
-              foldl
-                ( \(d, q) (nc, nw) ->
-                    let newDistance = distanceToCurrent + nw
-                     in if distanceToCurrent < fromMaybe maxBound (d Map.!? nc)
-                          then
-                            ( Map.insertWith min nc newDistance d,
-                              PSQ.insertWith min nc newDistance q
-                            )
-                          else (d, q)
-                )
-                (dists, PSQ.deleteMin queue)
-                (Map.toList (getNeighbours g nextKey))
-         in dijkstra' target g dists' queue''
+          let next = fromJust $ PSQ.findMin queue
+              nextKey = PSQ.key next
+              distanceToCurrent = dists Map.! nextKey
+              (dists', queue'') =
+                foldl
+                  ( \(d, q) (nc, nw) ->
+                      let newDistance = distanceToCurrent + nw
+                       in if distanceToCurrent < fromMaybe maxBound (d Map.!? nc)
+                            then
+                              ( Map.insertWith min nc newDistance d,
+                                PSQ.insertWith min nc newDistance q
+                              )
+                            else (d, q)
+                  )
+                  (dists, PSQ.deleteMin queue)
+                  (neighbours4 nextKey g)
+           in dijkstra' target g dists' queue''
 
 solve g =
   let coords = Map.keys g

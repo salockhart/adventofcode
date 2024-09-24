@@ -2,13 +2,9 @@
 
 module Day17 (main, part1, part2) where
 
-import AOC (dbg)
-import qualified Data.Foldable as Map
 import qualified Data.IntMap as Map
 import Data.List (nub)
 import Data.List.Split (splitOn)
-import Data.Maybe (fromMaybe)
-import Debug.Trace (trace)
 
 data Rect = Rect
   { leftEdge :: Int,
@@ -63,7 +59,7 @@ viableYS rect =
             takeWithin minY maxY $
               [(v, t, distance v t) | t <- [1 .. 1000]]
       )
-      [maxY .. - maxY]
+      [maxY .. -maxY]
   where
     takeWithin a b = takeWhile (\(v, t, d) -> d >= b) . dropWhile (\(v, t, d) -> d > a)
     distance v t = sum $ take t [v, v - 1 ..]

@@ -1,9 +1,9 @@
 module Day07 (main, part1, part2) where
 
-import AOC (median, splitOn)
+import AOC.Data.List (median)
+import AOC.Data.String (splitOn)
 import Data.List (sort)
 import Data.Maybe (fromMaybe)
-import Data.Text.Foreign (dropWord16)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))

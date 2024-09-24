@@ -1,6 +1,6 @@
 module Day03 (main, part1, part2) where
 
-import AOC (dbg, mkAoCMain)
+import AOC (mkAoCMain)
 import AOC.CoordMap (Coord, CoordMap, neighbours8, readCoordMap)
 import Control.Arrow (Arrow (second))
 import Data.Char (isDigit)
@@ -25,7 +25,7 @@ getValidParts coordMap =
     getValidParts' partNumbers entryList = do
       let rest = dropWhile (not . isDigit . snd) entryList
       let (number, rest') = span (isDigit . snd) rest
-      let neighbours = dbg $ getSymbolNeighbours number
+      let neighbours = getSymbolNeighbours number
       let partNumber = read (map snd number) :: Int
       getValidParts'
         ((partNumber, neighbours) : partNumbers)

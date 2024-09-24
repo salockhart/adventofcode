@@ -1,10 +1,7 @@
 module Day18 (main, part1, part2) where
 
-import AOC (combinations, dbg, groupOn)
-import Data.List (findIndex, maximumBy, minimumBy, nub, sortBy)
-import Data.List.Split (chunk, chunksOf)
+import Data.List (findIndex)
 import Data.Maybe (isJust)
-import Debug.Trace (trace)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
@@ -64,7 +61,7 @@ magnitudeNumber (t : ts) = fst $ head $ foldl handleStack [t] ts
     handleStack [] t = [t]
     handleStack (h@(xh, lh) : hs) a@(xa, la) =
       if la == lh
-        then handleStack hs (3 * xh + 2 * xa, lh -1)
+        then handleStack hs (3 * xh + 2 * xa, lh - 1)
         else a : h : hs
 
 part1 :: String -> String

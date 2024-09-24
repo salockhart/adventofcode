@@ -1,8 +1,8 @@
 module Day08 (main, part1, part2) where
 
-import AOC (forceUnwrap, splitOn)
+import AOC.Data.String (splitOn)
 import Data.List (elemIndex, find, sort)
-import Data.Maybe (isJust)
+import Data.Maybe (fromJust, isJust)
 
 main :: IO ()
 main = interact (show . \input -> (part1 input, part2 input))
@@ -55,7 +55,7 @@ part2 = show . solve . parse
       let digits = [digitZero, digitOne, digitTwo, digitThree, digitFour, digitFive, digitSix, digitSeven, digitEight, digitNine]
       let segments = (segmentA, segmentB, segmentC, segmentD, segmentE, segmentF, segmentG)
 
-      sum $ zipWith (\i x -> 10 ^ i * x) [0 ..] $ reverse $ map (forceUnwrap . (`elemIndex` digits)) ys
-    findWithLength n xs = forceUnwrap $ find (\x -> length x == n) xs
+      sum $ zipWith (\i x -> 10 ^ i * x) [0 ..] $ reverse $ map (fromJust . (`elemIndex` digits)) ys
+    findWithLength n xs = fromJust $ find (\x -> length x == n) xs
     findWithOccurences n xs = filter (\s -> length (filter (\x -> s `elem` x) xs) == n) ['a' .. 'g']
     subtractList xs ys = [x | x <- xs, x `notElem` ys]

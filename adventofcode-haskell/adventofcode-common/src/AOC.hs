@@ -7,7 +7,7 @@ module AOC
   )
 where
 
-import Advent (AoC (AoCInput, AoCSubmit), Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
+import Advent (AoC (AoCInput, AoCSubmit), AoCUserAgent (AoCUserAgent, _auaEmail, _auaRepo), Part (Part1, Part2), defaultAoCOpts, mkDay_, runAoC)
 import Control.Exception (Exception, throw)
 import qualified Data.Foldable as Foldable
 import Data.Functor ((<&>))
@@ -25,7 +25,14 @@ instance Exception AoCException
 notImplemented :: a
 notImplemented = throw NotImplementedException
 
-mkAoCMain :: Show a => Show b => Integer -> Integer -> (Text -> a) -> (Text -> b) -> IO ()
+aocUserAgent :: AoCUserAgent
+aocUserAgent =
+  AoCUserAgent
+    { _auaRepo = pack "salockhart/adventofcode",
+      _auaEmail = pack "alex@lockhart.dev"
+    }
+
+mkAoCMain :: (Show a) => (Show b) => Integer -> Integer -> (Text -> a) -> (Text -> b) -> IO ()
 mkAoCMain year day part1Solver part2Solver = do
   token <- getToken
 
@@ -38,7 +45,7 @@ mkAoCMain year day part1Solver part2Solver = do
   return ()
   where
     getToken = getEnv "AOC_SESSION"
-    runAoC' key = runAoC (defaultAoCOpts year key)
+    runAoC' key = runAoC (defaultAoCOpts aocUserAgent year key)
     getInput = AoCInput (mkDay_ day)
     handleInputError = either (error . show) return
     getSubmit = AoCSubmit (mkDay_ day)
@@ -57,7 +64,7 @@ mkAoCMain year day part1Solver part2Solver = do
 applyN :: Int -> (a -> a) -> a -> a
 applyN n f = Foldable.foldr (.) id (List.replicate n f)
 
-dbg :: Show a => a -> a
+dbg :: (Show a) => a -> a
 dbg x = trace (show x) x
 
 btoi :: [Int] -> Int
