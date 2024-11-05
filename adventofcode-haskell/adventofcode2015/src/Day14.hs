@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Day14 (main, part1, part2) where
 
 import AOC.Data.List (maximumOn)

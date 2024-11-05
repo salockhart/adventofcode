@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Day17 (main, part1, part2) where
 
 import qualified Data.IntMap as Map

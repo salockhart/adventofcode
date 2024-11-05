@@ -1,32 +1,19 @@
-name:                adventofcode2015
-version:             0.1.0.0
-github:              "githubuser/adventofcode2015"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2020 Author name here"
-
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
-
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/adventofcode2015#readme>
+name: adventofcode2015
 
 dependencies:
-- base >= 4.7 && < 5
-- adventofcode-common
-- text
-- containers
-- array
-- MissingH
-- regex-pcre-builtin
-- vector
-- megaparsec
-- parser-combinators
-- json
+  - base >= 4.7 && < 5
+  - adventofcode-common
+  - array
+  - containers
+  - json
+  - megaparsec
+  - MissingH
+  - regex-pcre-builtin
+  - text
+
+default-extensions:
+  # - OverloadedStrings # this doesn't play too nice with regex-pcre-builtin
+  - TupleSections
 
 library:
   source-dirs: src
@@ -35,14 +22,14 @@ library:
 
 tests:
   adventofcode2015-test:
-    main:                Spec.hs
-    source-dirs:         test
+    main: Spec.hs
+    source-dirs: test
     ghc-options:
-    - -Wall
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - adventofcode2015
-    - hspec
-    - hspec-discover
+      - adventofcode2015
+      - hspec
+      - hspec-discover

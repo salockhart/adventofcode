@@ -1,37 +1,16 @@
-name:                adventofcode2023
-version:             0.1.0.0
-github:              "githubuser/adventofcode2023"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2020 Author name here"
-
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
-
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/adventofcode2023#readme>
+name: adventofcode2023
 
 dependencies:
-- base >= 4.7 && < 5
-- adventofcode-common
-- text
-- regex-pcre-builtin
-- containers
-- vector
-- megaparsec
-- parser-combinators
-- parallel
-- split
-- PSQueue
-- memoize
+  - base >= 4.7 && < 5
+  - adventofcode-common
+  - containers
+  - megaparsec
+  - memoize
+  - text
 
 default-extensions:
-- OverloadedStrings
-- TupleSections
+  - OverloadedStrings
+  - TupleSections
 
 library:
   source-dirs: src
@@ -40,14 +19,14 @@ library:
 
 tests:
   adventofcode2023-test:
-    main:                Spec.hs
-    source-dirs:         test
+    main: Spec.hs
+    source-dirs: test
     ghc-options:
-    - -Wall
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - adventofcode2023
-    - hspec
-    - hspec-discover
+      - adventofcode2023
+      - hspec
+      - hspec-discover

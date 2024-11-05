@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Day24 (main, part1, part2) where
 
 import Data.Either (rights)

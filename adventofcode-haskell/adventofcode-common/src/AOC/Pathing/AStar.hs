@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module AOC.Pathing.AStar
   ( aStar,
   )

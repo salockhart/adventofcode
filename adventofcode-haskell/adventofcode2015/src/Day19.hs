@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Day19 (main, part1, part2) where
 
 import AOC.Data.String (splitOn)

@@ -1,23 +1,12 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.1.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
 name:           adventofcode2015
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/adventofcode2015#readme>
-homepage:       https://github.com/githubuser/adventofcode2015#readme
-bug-reports:    https://github.com/githubuser/adventofcode2015/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
-license:        BSD3
+version:        0.0.0
 build-type:     Simple
-
-source-repository head
-  type: git
-  location: https://github.com/githubuser/adventofcode2015
 
 library
   exposed-modules:
@@ -46,6 +35,8 @@ library
       Paths_adventofcode2015
   hs-source-dirs:
       src
+  default-extensions:
+      TupleSections
   ghc-options: -Wall
   build-depends:
       MissingH
@@ -55,10 +46,8 @@ library
     , containers
     , json
     , megaparsec
-    , parser-combinators
     , regex-pcre-builtin
     , text
-    , vector
   default-language: Haskell2010
 
 test-suite adventofcode2015-test
@@ -85,6 +74,8 @@ test-suite adventofcode2015-test
       Paths_adventofcode2015
   hs-source-dirs:
       test
+  default-extensions:
+      TupleSections
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       MissingH
@@ -97,8 +88,6 @@ test-suite adventofcode2015-test
     , hspec-discover
     , json
     , megaparsec
-    , parser-combinators
     , regex-pcre-builtin
     , text
-    , vector
   default-language: Haskell2010

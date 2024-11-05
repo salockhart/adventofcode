@@ -1,23 +1,12 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
 name:           adventofcode2023
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/adventofcode2023#readme>
-homepage:       https://github.com/githubuser/adventofcode2023#readme
-bug-reports:    https://github.com/githubuser/adventofcode2023/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
-license:        BSD3
+version:        0.0.0
 build-type:     Simple
-
-source-repository head
-  type: git
-  location: https://github.com/githubuser/adventofcode2023
 
 library
   exposed-modules:
@@ -41,6 +30,7 @@ library
       Day18
       Day19
       Day20
+      Day21
   other-modules:
       Paths_adventofcode2023
   hs-source-dirs:
@@ -50,18 +40,12 @@ library
       TupleSections
   ghc-options: -Wall
   build-depends:
-      PSQueue
-    , adventofcode-common
+      adventofcode-common
     , base >=4.7 && <5
     , containers
     , megaparsec
     , memoize
-    , parallel
-    , parser-combinators
-    , regex-pcre-builtin
-    , split
     , text
-    , vector
   default-language: Haskell2010
 
 test-suite adventofcode2023-test
@@ -88,6 +72,7 @@ test-suite adventofcode2023-test
       Day18Spec
       Day19Spec
       Day20Spec
+      Day21Spec
       Paths_adventofcode2023
   hs-source-dirs:
       test
@@ -96,8 +81,7 @@ test-suite adventofcode2023-test
       TupleSections
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      PSQueue
-    , adventofcode-common
+      adventofcode-common
     , adventofcode2023
     , base >=4.7 && <5
     , containers
@@ -105,10 +89,5 @@ test-suite adventofcode2023-test
     , hspec-discover
     , megaparsec
     , memoize
-    , parallel
-    , parser-combinators
-    , regex-pcre-builtin
-    , split
     , text
-    , vector
   default-language: Haskell2010
