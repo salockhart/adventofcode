@@ -13,15 +13,15 @@ unsnoc :: [a] -> Maybe ([a], a)
 unsnoc = foldr (\x -> Just . maybe ([], x) (\(~(a, b)) -> (x : a, b))) Nothing
 {-# INLINEABLE unsnoc #-}
 
-groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
+groupOn :: (Eq b) => (a -> b) -> [a] -> [[a]]
 groupOn f = groupBy ((==) `on2` f)
   where
     (.*.) `on2` f' = \x -> let fx = f' x in \y -> fx .*. f' y
 
-minimumOn :: Foldable t => Ord b => (a -> b) -> t a -> a
+minimumOn :: (Foldable t) => (Ord b) => (a -> b) -> t a -> a
 minimumOn f = minimumBy (\a b -> f a `compare` f b)
 
-maximumOn :: Foldable t => Ord b => (a -> b) -> t a -> a
+maximumOn :: (Foldable t) => (Ord b) => (a -> b) -> t a -> a
 maximumOn f = maximumBy (\a b -> f a `compare` f b)
 
 slice :: Int -> Int -> [a] -> [a]
@@ -39,7 +39,7 @@ combinations :: [a] -> [[a]]
 combinations [] = [[]]
 combinations xs = [] : concat [map (x :) $ combinations xs' | (x : xs') <- tails xs]
 
-median :: Integral a => [a] -> Maybe a
+median :: (Integral a) => [a] -> Maybe a
 median xs
   | null xs = Nothing
   | odd len = Just $ xs !! mid
@@ -55,3 +55,8 @@ mapWithPrevious fn xs = head xs : mapWithPrevious' xs
     mapWithPrevious' [] = []
     mapWithPrevious' [_] = []
     mapWithPrevious' (a : b : rest) = let b' = fn a b in b' : mapWithPrevious' (b' : rest)
+
+first2 :: [a] -> (a, a)
+first2 [a, b] = (a, b)
+first2 [a, b, _] = (a, b)
+first2 _ = error "first2: list must have 2 elements"

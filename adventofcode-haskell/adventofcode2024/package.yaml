@@ -1,0 +1,31 @@
+name: adventofcode2024
+
+dependencies:
+  - base >= 4.7 && < 5
+  - adventofcode-common
+  - containers
+  - megaparsec
+  - text
+
+default-extensions:
+  - OverloadedStrings
+  - TupleSections
+
+library:
+  source-dirs: src
+  ghc-options:
+    - -Wall
+
+tests:
+  adventofcode2024-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - adventofcode2024
+      - hspec
+      - hspec-discover
