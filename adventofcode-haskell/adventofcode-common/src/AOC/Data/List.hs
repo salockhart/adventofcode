@@ -57,6 +57,9 @@ mapWithPrevious fn xs = head xs : mapWithPrevious' xs
     mapWithPrevious' (a : b : rest) = let b' = fn a b in b' : mapWithPrevious' (b' : rest)
 
 first2 :: [a] -> (a, a)
-first2 [a, b] = (a, b)
-first2 [a, b, _] = (a, b)
+first2 (a : b : _) = (a, b)
 first2 _ = error "first2: list must have 2 elements"
+
+first3 :: [a] -> (a, a, a)
+first3 (a : b : c : _) = (a, b, c)
+first3 _ = error "first3: list must have 3 elements"

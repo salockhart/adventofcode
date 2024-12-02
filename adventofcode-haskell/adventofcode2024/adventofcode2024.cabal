@@ -11,6 +11,7 @@ build-type:     Simple
 library
   exposed-modules:
       Day01
+      Day02
   other-modules:
       Paths_adventofcode2024
   hs-source-dirs:
@@ -32,6 +33,7 @@ test-suite adventofcode2024-test
   main-is: Spec.hs
   other-modules:
       Day01Spec
+      Day02Spec
       Paths_adventofcode2024
   hs-source-dirs:
       test
