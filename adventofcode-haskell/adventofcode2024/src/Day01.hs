@@ -1,12 +1,11 @@
 module Day01 (main, part1, part2) where
 
-import AOC (mkAoCMain, notImplemented)
+import AOC (mkAoCMain)
 import AOC.Data.List (first2)
 import Data.Bifunctor (Bifunctor (second))
 import Data.List (group, sort, transpose)
 import qualified Data.Map as M
 import Data.Maybe (fromMaybe)
-import qualified Data.Set as S
 import qualified Data.Text as T
 
 main :: IO ()

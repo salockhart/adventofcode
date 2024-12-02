@@ -1,7 +1,7 @@
 module Day01Spec (spec) where
 
 import qualified Data.Text as T
-import Day01 (main, part1, part2)
+import Day01 (part1, part2)
 import Test.Hspec
 
 input :: T.Text
