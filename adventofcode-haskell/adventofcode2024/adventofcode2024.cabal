@@ -12,6 +12,7 @@ library
   exposed-modules:
       Day01
       Day02
+      Day03
   other-modules:
       Paths_adventofcode2024
   hs-source-dirs:
@@ -25,6 +26,7 @@ library
     , base >=4.7 && <5
     , containers
     , megaparsec
+    , regex-pcre-builtin
     , text
   default-language: Haskell2010
 
@@ -34,6 +36,7 @@ test-suite adventofcode2024-test
   other-modules:
       Day01Spec
       Day02Spec
+      Day03Spec
       Paths_adventofcode2024
   hs-source-dirs:
       test
@@ -49,5 +52,6 @@ test-suite adventofcode2024-test
     , hspec
     , hspec-discover
     , megaparsec
+    , regex-pcre-builtin
     , text
   default-language: Haskell2010
