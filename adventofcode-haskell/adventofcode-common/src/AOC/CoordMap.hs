@@ -24,37 +24,39 @@ readCoordMap =
     Map.empty
     . zip [0 ..]
 
-lookupWithKey :: Ord a => a -> Map.Map a b -> Maybe (a, b)
+lookupWithKey :: (Ord a) => a -> Map.Map a b -> Maybe (a, b)
 lookupWithKey c m = Map.lookup c m >>= (\v -> Just (c, v))
 
-lookupManyWithKey :: Ord a => [a] -> Map.Map a b -> [(a, b)]
+lookupManyWithKey :: (Ord a) => [a] -> Map.Map a b -> [(a, b)]
 lookupManyWithKey cs m = mapMaybe (`lookupWithKey` m) cs
 
-north :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+type CoordMapDirection b = Coord -> CoordMap b -> Maybe (Coord, b)
+
+north :: CoordMapDirection b
 north (x, y) m = let c = (x, y - 1) in c `lookupWithKey` m
 
-south :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+south :: CoordMapDirection b
 south (x, y) m = let c = (x, y + 1) in c `lookupWithKey` m
 
-east :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+east :: CoordMapDirection b
 east (x, y) m = let c = (x + 1, y) in c `lookupWithKey` m
 
-west :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+west :: CoordMapDirection b
 west (x, y) m = let c = (x - 1, y) in c `lookupWithKey` m
 
-northwest :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+northwest :: CoordMapDirection b
 northwest (x, y) m = let c = (x - 1, y - 1) in c `lookupWithKey` m
 
-northeast :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+northeast :: CoordMapDirection b
 northeast (x, y) m = let c = (x + 1, y - 1) in c `lookupWithKey` m
 
-southwest :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+southwest :: CoordMapDirection b
 southwest (x, y) m = let c = (x - 1, y + 1) in c `lookupWithKey` m
 
-southeast :: Coord -> Map.Map Coord b -> Maybe (Coord, b)
+southeast :: CoordMapDirection b
 southeast (x, y) m = let c = (x + 1, y + 1) in c `lookupWithKey` m
 
-inDirections :: [Coord -> Map.Map Coord b -> Maybe (Coord, b)] -> Coord -> CoordMap b -> [(Coord, b)]
+inDirections :: [CoordMapDirection b] -> Coord -> CoordMap b -> [(Coord, b)]
 inDirections directions c m = mapMaybe (\f -> f c m) directions
 
 neighbours4 :: Coord -> CoordMap a -> [(Coord, a)]
@@ -100,21 +102,23 @@ picksTheorem path = picksTheorem' (shoelaceTheorem path) (length path)
 picksTheorem' :: Int -> Int -> Int
 picksTheorem' area numBoundary = area + 1 - (numBoundary `div` 2)
 
-traceCoordMap :: Show a => CoordMap a -> c -> c
+traceCoordMap :: (Show a) => CoordMap a -> c -> c
 traceCoordMap m = traceCoordMap' m (const (Nothing :: Maybe String))
 
 traceCoordMap' :: (Show a, Show b) => CoordMap a -> (Coord -> Maybe b) -> c -> c
 traceCoordMap' m transform =
   trace
     ( concat
-        [ ( concat
-              [ getValue x y ++ " "
-                | x <- [minX .. maxX]
+        ( "\n\n"
+            : [ ( concat
+                    [ getValue x y ++ " "
+                      | x <- [minX .. maxX]
+                    ]
+                )
+                  ++ "\n"
+                | y <- [minY .. maxY]
               ]
-          )
-            ++ "\n"
-          | y <- [minY .. maxY]
-        ]
+        )
     )
   where
     coords = Map.keys m
@@ -131,7 +135,7 @@ traceCoordMap' m transform =
             Just t -> filterOutQuotes $ show t
             Nothing -> maybe " " (filterOutQuotes . show) (m Map.!? (x, y))
 
-dbgCoordMap :: Show a => CoordMap a -> CoordMap a
+dbgCoordMap :: (Show a) => CoordMap a -> CoordMap a
 dbgCoordMap m = traceCoordMap m m
 
 dbgCoordMap' :: (Show a, Show b) => CoordMap a -> (Coord -> Maybe b) -> CoordMap a

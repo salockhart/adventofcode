@@ -11,6 +11,7 @@ build-type:     Simple
 library
   exposed-modules:
       AOC
+      AOC.Control.Monad.State
       AOC.CoordMap
       AOC.Data.List
       AOC.Data.Map
@@ -32,5 +33,6 @@ library
     , advent-of-code-api
     , base >=4.7 && <5
     , containers
+    , mtl
     , text
   default-language: Haskell2010
