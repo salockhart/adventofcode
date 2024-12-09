@@ -7,7 +7,6 @@ import Control.Monad.State (State, evalState)
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
-import Debug.Trace (trace)
 
 data Direction = N | E | S | W deriving (Show, Ord, Eq)
 
@@ -44,7 +43,7 @@ isDuplicate a = do
   return seen
 
 anyDuplicate :: (Ord a) => [a] -> Bool
-anyDuplicate as = trace "anyDuplicate" $ evalState (anyDuplicate' as) S.empty
+anyDuplicate as = evalState (anyDuplicate' as) S.empty
   where
     anyDuplicate' :: (Ord a) => [a] -> State (S.Set a) Bool
     anyDuplicate' = anyM isDuplicate
