@@ -1,9 +1,9 @@
 module Day06 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Control.Monad.State (anyM, haveSeen, remember)
+import AOC.Control.Monad.State (anyM)
 import AOC.CoordMap (Coord, CoordMap, east, north, readCoordMap, south, west)
-import Control.Monad.State (State, evalState)
+import Control.Monad.State (State, evalState, get, modify)
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
@@ -38,9 +38,10 @@ walk cm c d = case step cm c d of
 
 isDuplicate :: (Ord a) => a -> State (S.Set a) Bool
 isDuplicate a = do
-  seen <- haveSeen a
-  remember a
-  return seen
+  seen <- get
+  let dupe = a `S.member` seen
+  modify (S.insert a)
+  return dupe
 
 anyDuplicate :: (Ord a) => [a] -> Bool
 anyDuplicate as = evalState (anyDuplicate' as) S.empty
