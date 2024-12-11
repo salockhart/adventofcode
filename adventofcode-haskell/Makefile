@@ -21,7 +21,7 @@ test-watch: build
 	@stack test adventofcode$(year) --file-watch --allow-different-user
 
 solve:
-	@stack ghci \
+	@echo "main" | stack ghci \
 		adventofcode$(year) \
 		--ghci-options \
 		./src/Day$(day).hs
