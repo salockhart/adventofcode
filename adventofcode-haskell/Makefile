@@ -20,11 +20,17 @@ test: build
 test-watch: build
 	@stack test adventofcode$(year) --file-watch --allow-different-user
 
+## run and submit the solution
 solve:
 	@echo "main" | stack ghci \
 		adventofcode$(year) \
 		--ghci-options \
 		./src/Day$(day).hs
+
+## setup the project for a new day
+setup:
+	@cat templates/Day.hs.template | sed "s/{day}/$(day)/g" | sed "s/{year}/$(year)/g" > adventofcode$(year)/src/Day$(day).hs
+	@cat templates/DaySpec.hs.template | sed "s/{day}/$(day)/g" | sed "s/{year}/$(year)/g" > adventofcode$(year)/test/Day$(day)Spec.hs
 
 ## debug
 debug:

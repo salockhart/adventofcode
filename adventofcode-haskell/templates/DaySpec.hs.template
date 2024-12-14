@@ -1,0 +1,18 @@
+module Day{day}Spec (spec) where
+
+import qualified Data.Text as T
+import Day{day} (part1, part2)
+import Test.Hspec
+
+input :: T.Text
+input = ""
+
+spec :: Spec
+spec = do
+  describe "Part1" $ do
+    it ("\n" ++ T.unpack input) $ do
+      part1 input `shouldSatisfy` const False
+
+  describe "Part2" $ do
+    it ("\n" ++ T.unpack input) $ do
+      part2 input `shouldSatisfy` const False
