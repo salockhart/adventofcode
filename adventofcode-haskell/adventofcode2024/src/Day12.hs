@@ -10,7 +10,7 @@ main :: IO ()
 main = mkAoCMain 2024 12 part1 part2
 
 parse :: T.Text -> CoordMap Char
-parse = readCoordMap . map T.unpack . T.lines . T.strip
+parse = readCoordMap . lines . T.unpack . T.strip
 
 regions :: CoordMap Char -> [S.Set Coord]
 regions cm

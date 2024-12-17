@@ -12,7 +12,7 @@ main :: IO ()
 main = mkAoCMain 2024 08 part1 part2
 
 parse :: T.Text -> CoordMap Char
-parse = readCoordMap . map T.unpack . T.lines
+parse = readCoordMap . lines . T.unpack
 
 solve :: (Ord b, Show b) => (M.Map b Char -> [b] -> [b]) -> M.Map b Char -> S.Set b
 solve p m =

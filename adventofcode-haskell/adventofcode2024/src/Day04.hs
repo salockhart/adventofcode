@@ -13,8 +13,8 @@ main = mkAoCMain 2024 04 part1 part2
 parse :: T.Text -> CoordMap Char
 parse =
   readCoordMap
-    . map T.unpack
-    . T.splitOn "\n"
+    . lines
+    . T.unpack
 
 part1 :: T.Text -> Int
 part1 =

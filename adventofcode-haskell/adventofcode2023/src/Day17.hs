@@ -7,7 +7,7 @@ import AOC.Data.Tuple (fstOf3, sndOf3)
 import AOC.Pathing.Dijkstra (dijkstra)
 import Data.Bifunctor (Bifunctor (first), second)
 import qualified Data.Map as M
-import Data.Maybe (fromJust)
+import Data.Maybe (mapMaybe)
 import qualified Data.Text as T
 
 main :: IO ()
@@ -34,14 +34,14 @@ parse =
 neighbours ::
   Int ->
   Int ->
-  CoordWithDirection ->
   M.Map CoordWithDirection Int ->
+  CoordWithDirection ->
   [(CoordWithDirection, Int)]
-neighbours minVal maxVal (x, y, d) g =
+neighbours minVal maxVal g (x, y, d) =
   map fst $
-    filter ((>= minVal) . snd) $
-      concat
-        [ mapWithPrevious
+    concatMap
+      (filter ((>= minVal) . snd))
+      ( [ mapWithPrevious
             (\(prev, _) current -> first (second (+ snd prev)) current)
             [ ((n, cost), i)
               | i <- [1 .. maxVal],
@@ -54,14 +54,14 @@ neighbours minVal maxVal (x, y, d) g =
             ]
           | s <- [-1, 1]
         ]
+      )
 
 solve :: Int -> Int -> M.Map CoordWithDirection Int -> Int
 solve minVal maxVal coordMap = do
   let coords = M.keys coordMap
   let sources = [(0, 0, Horizontal), (0, 0, Vertical)]
   let target (x, y, _) = (x, y) == (\cs -> (maximum $ map fstOf3 cs, maximum $ map sndOf3 cs)) coords
-  let (cost, _) = dijkstra (neighbours minVal maxVal) sources target coordMap
-  fromJust cost
+  minimum $ map fst $ mapMaybe (\s -> dijkstra (neighbours minVal maxVal coordMap) s target) sources
 
 part1 :: T.Text -> Int
 part1 = solve 1 3 . parse

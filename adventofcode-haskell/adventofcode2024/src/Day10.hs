@@ -2,8 +2,8 @@ module Day10 (main, part1, part2) where
 
 import AOC (mkAoCMain)
 import AOC.CoordMap (Coord, CoordMap, neighbours4, readCoordMap)
+import Data.List (nub)
 import qualified Data.Map as M
-import qualified Data.Set as S
 import qualified Data.Text as T
 
 main :: IO ()
@@ -31,7 +31,7 @@ findTrailheads cm =
 part1 :: T.Text -> Int
 part1 =
   sum
-    . map (length . S.fromList . map last)
+    . map (length . nub . map last)
     . findTrailheads
     . parse
 

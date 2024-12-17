@@ -4,6 +4,7 @@ import AOC (mkAoCMain)
 import AOC.Control.Monad.State (anyM)
 import AOC.CoordMap (Coord, CoordMap, east, north, readCoordMap, south, west)
 import Control.Monad.State (State, evalState, get, modify)
+import Data.List (nub)
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
@@ -56,7 +57,7 @@ solve cm = do
   walk cm' start N
 
 part1 :: T.Text -> Int
-part1 = length . S.fromList . map fst . solve . parse
+part1 = length . nub . map fst . solve . parse
 
 part2 :: T.Text -> Int
 part2 = length . filter id . map (anyDuplicate . solve) . possibles . parse
