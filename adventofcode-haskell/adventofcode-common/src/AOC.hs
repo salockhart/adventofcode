@@ -11,10 +11,12 @@ import Advent (AoC (AoCInput, AoCSubmit), AoCUserAgent (AoCUserAgent, _auaEmail,
 import Control.Exception (Exception, throw)
 import qualified Data.Foldable as Foldable
 import Data.Functor ((<&>))
+import Data.List (dropWhileEnd)
 import qualified Data.List as List
 import Data.Text (Text, pack, unpack)
 import Debug.Trace (trace)
 import System.Environment (getEnv)
+import Text.Printf (printf)
 
 -- Advent API
 
@@ -39,8 +41,8 @@ mkAoCMain year day part1Solver part2Solver = do
   let runner = runAoC' token
   input <- runner getInput >>= handleInputError
 
-  reportAnswer Part1 (pack $ show $ part1Solver input) runner
-  reportAnswer Part2 (pack $ show $ part2Solver input) runner
+  reportAnswer Part1 (pack $ show' $ part1Solver input) runner
+  reportAnswer Part2 (pack $ show' $ part2Solver input) runner
 
   return ()
   where
@@ -69,3 +71,6 @@ dbg x = trace (show x) x
 
 btoi :: [Int] -> Int
 btoi = sum . zipWith (\i x -> x * (2 ^ i)) [0 :: Int ..] . reverse
+
+show' :: (Show a) => a -> [Char]
+show' = let p = (== '\"') in dropWhile p . dropWhileEnd p . show
