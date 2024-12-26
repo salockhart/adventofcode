@@ -1,7 +1,7 @@
 module Day06 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Control.Monad.State (anyM)
+import AOC.Control.Monad (anyM)
 import AOC.CoordMap (Coord, CoordMap, east, north, readCoordMap, south, west)
 import Control.Monad.State (State, evalState, get, modify)
 import Data.List (nub)

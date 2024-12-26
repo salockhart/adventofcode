@@ -11,7 +11,7 @@ build-type:     Simple
 library
   exposed-modules:
       AOC
-      AOC.Control.Monad.State
+      AOC.Control.Monad
       AOC.CoordMap
       AOC.Data.List
       AOC.Data.Map

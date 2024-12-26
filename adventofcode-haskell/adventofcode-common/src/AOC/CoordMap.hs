@@ -71,6 +71,17 @@ neighbours8 coord m = neighbours4 coord m `union` diagonals coord m
 manhattan :: Coord -> Coord -> Int
 manhattan (ax, ay) (bx, by) = abs (bx - ax) + abs (by - ay)
 
+bounds :: CoordMap a -> (Int, Int, Int, Int)
+bounds cm =
+  let keys = Map.keys cm
+      xs = map fst keys
+      ys = map snd keys
+   in ( minimum xs,
+        maximum xs,
+        minimum ys,
+        maximum ys
+      )
+
 -- |
 -- Returns the area of the polygon described by the provided
 -- list of points.

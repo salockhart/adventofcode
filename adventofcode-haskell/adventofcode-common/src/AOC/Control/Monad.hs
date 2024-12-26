@@ -1,7 +1,4 @@
-module AOC.Control.Monad.State where
-
-import Control.Monad.State (MonadState (get), State, modify)
-import qualified Data.Set as S
+module AOC.Control.Monad where
 
 anyM :: (Monad m) => (a -> m Bool) -> [a] -> m Bool
 anyM _ [] = return False
