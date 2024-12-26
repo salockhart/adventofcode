@@ -5,6 +5,12 @@ fromList2 [] = error "cannot construct a tuple from an empty list"
 fromList2 [_] = error "cannot construct a tuple from a single element list"
 fromList2 (a : b : _) = (a, b)
 
+fromList3 :: [b] -> (b, b, b)
+fromList3 [] = error "cannot construct a tuple from an empty list"
+fromList3 [_] = error "cannot construct a tuple from a single element list"
+fromList3 [_, _] = error "cannot construct a tuple from a two element list"
+fromList3 (a : b : c:_) = (a, b, c)
+
 fstOf3 :: (a, b, c) -> a
 fstOf3 (a, _, _) = a
 

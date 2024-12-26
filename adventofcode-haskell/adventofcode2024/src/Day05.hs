@@ -1,7 +1,7 @@
 module Day05 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Data.List (first2)
+import AOC.Data.Tuple (fromList2)
 import Data.Bifunctor (bimap)
 import Data.List (sortBy)
 import qualified Data.Map as M
@@ -14,11 +14,11 @@ parse :: T.Text -> (M.Map (Int, Int) Ordering, [[Int]])
 parse =
   bimap
     ( M.fromList
-        . concatMap ((\t@((a, b), _) -> [t, ((b, a), GT)]) . (,LT) . first2)
+        . concatMap ((\t@((a, b), _) -> [t, ((b, a), GT)]) . (,LT) . fromList2)
         . parseSection "|"
     )
     (parseSection ",")
-    . first2
+    . fromList2
     . T.splitOn "\n\n"
     . T.strip
   where

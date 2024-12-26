@@ -2,7 +2,7 @@ module Day15 (main, part1, part2) where
 
 import AOC (mkAoCMain)
 import AOC.CoordMap (Coord, CoordMap, CoordMapDirection, east, north, readCoordMap, south, west)
-import AOC.Data.List (first2)
+import AOC.Data.Tuple (fromList2)
 import Data.Bifunctor (bimap)
 import Data.List (find)
 import qualified Data.Map as M
@@ -33,7 +33,7 @@ parse transformer =
         . T.strip
     )
     (map readMovement . concat . lines . T.unpack)
-    . first2
+    . fromList2
     . T.splitOn "\n\n"
 
 solve :: (Coord, CoordMap Char) -> [CoordMapDirection Char] -> (Coord, CoordMap Char)

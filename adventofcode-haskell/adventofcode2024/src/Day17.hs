@@ -1,7 +1,7 @@
 module Day17 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Data.List (first2, first3)
+import AOC.Data.Tuple (fromList2, fromList3)
 import Control.Monad.State (State, execState, get, gets, modify)
 import Data.Bifunctor (bimap)
 import Data.Bits (xor)
@@ -34,9 +34,9 @@ parse =
         }
   )
     . bimap
-      (first3 . map (read . drop 12) . lines . T.unpack)
+      (fromList3 . map (read . drop 12) . lines . T.unpack)
       (map (read . T.unpack) . T.splitOn "," . T.drop 9)
-    . first2
+    . fromList2
     . T.splitOn "\n\n"
 
 getOutput :: RAM -> [Int]

@@ -1,7 +1,7 @@
 module Day07 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Data.List (first2)
+import AOC.Data.Tuple (fromList2)
 import Data.Bifunctor (Bifunctor (second), bimap, second)
 import qualified Data.Set as S
 import qualified Data.Text as T
@@ -17,7 +17,7 @@ parse =
         ( map (read . T.unpack)
             . T.splitOn " "
         )
-        . first2
+        . fromList2
         . T.splitOn ": "
     )
     . T.lines

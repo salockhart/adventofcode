@@ -1,7 +1,8 @@
 module Day02 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Data.List (first2, windows)
+import AOC.Data.List (windows)
+import AOC.Data.Tuple (fromList2)
 import qualified Data.Text as T
 
 main :: IO ()
@@ -31,7 +32,7 @@ isSafe ls = isSafe' (length ls) ls
     isSafeStep x = let x' = abs x in (x' >= 1 && x' <= 3)
     allSameDirection =
       (\x' -> all (>= 0) x' || all (<= 0) x')
-        . map (uncurry (-) . first2)
+        . map (uncurry (-) . fromList2)
         . windows 2
         . reverse
 

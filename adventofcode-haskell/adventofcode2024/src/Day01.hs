@@ -1,7 +1,7 @@
 module Day01 (main, part1, part2) where
 
 import AOC (mkAoCMain)
-import AOC.Data.List (first2)
+import AOC.Data.Tuple (fromList2)
 import Data.Bifunctor (Bifunctor (second))
 import Data.List (group, sort, transpose)
 import qualified Data.Map as M
@@ -22,7 +22,7 @@ part1 =
   sum
     . map (abs . uncurry (-))
     . uncurry zip
-    . first2
+    . fromList2
     . map sort
     . parse
 
@@ -36,5 +36,5 @@ part2 =
           . group
           . sort
       )
-    . first2
+    . fromList2
     . parse
