@@ -36,8 +36,8 @@ spec :: Spec
 spec = do
   describe "Part1" $ do
     it ("\n" ++ T.unpack input) $ do
-      (part1 12) input `shouldSatisfy` (== 22)
+      part1 12 input `shouldSatisfy` (== 22)
 
   describe "Part2" $ do
     it ("\n" ++ T.unpack input) $ do
-      (part2 12) input `shouldSatisfy` (== "6,1")
+      part2 12 input `shouldSatisfy` (== "6,1")

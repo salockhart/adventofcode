@@ -1,10 +1,8 @@
 module Day14Spec (spec) where
 
 import qualified Data.Text as T
-import Day14 (part1, part2)
+import Day14 (part1)
 import Test.Hspec
-
-bounds = (11, 7)
 
 input :: T.Text
 input =
@@ -25,4 +23,4 @@ spec :: Spec
 spec = do
   describe "Part1" $ do
     it ("\n" ++ T.unpack input) $ do
-      part1 bounds input `shouldSatisfy` (== 12)
+      part1 (11, 7) input `shouldSatisfy` (== 12)
