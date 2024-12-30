@@ -5,6 +5,7 @@ dependencies:
   - adventofcode-common
   - containers
   - megaparsec
+  - memoize
   - mtl
   - regex-pcre-builtin
   - text
