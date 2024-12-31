@@ -17,4 +17,4 @@ mkPaths :: (Ord c) => M.Map c (Maybe (S.Set c)) -> c -> [[c]]
 mkPaths m to = case m M.!? to of
   Nothing -> []
   Just Nothing -> [[to]]
-  Just (Just prevs) -> map (to :) $ concatMap (\p -> map (p :) $ mkPaths m p) prevs
+  Just (Just prevs) -> map (to :) $ concatMap (mkPaths m) prevs

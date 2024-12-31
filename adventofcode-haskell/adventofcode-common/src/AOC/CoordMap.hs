@@ -151,3 +151,9 @@ dbgCoordMap m = traceCoordMap m m
 
 dbgCoordMap' :: (Show a, Show b) => CoordMap a -> (Coord -> Maybe b) -> CoordMap a
 dbgCoordMap' m transform = traceCoordMap' m transform m
+
+traceCoordList :: [Coord] -> c -> c
+traceCoordList = traceCoordMap . Map.fromList . map (,'X')
+
+dbgCoordList :: [Coord] -> [Coord]
+dbgCoordList a = traceCoordList a a

@@ -22,10 +22,17 @@ test-watch: build
 
 ## run and submit the solution
 solve:
-	@echo "main" | stack ghci \
-		adventofcode$(year) \
-		--ghci-options \
-		./src/Day$(day).hs
+	@echo "Building Day$(day)..."
+	@stack ghc -- \
+		adventofcode$(year)/src/Day$(day).hs \
+		-threaded \
+		-rtsopts \
+		-with-rtsopts=-N \
+		-main-is Day$(day) \
+		-outputdir adventofcode$(year)/build \
+		-o adventofcode$(year)/build/Day$(day)
+	@echo "Running Day$(day)..."
+	@adventofcode$(year)/build/Day$(day)
 
 ## setup the project for a new day
 setup:
