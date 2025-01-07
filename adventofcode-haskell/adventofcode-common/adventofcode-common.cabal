@@ -18,6 +18,7 @@ library
       AOC.Data.String
       AOC.Data.Tuple
       AOC.Pathing.AStar
+      AOC.Pathing.DFS
       AOC.Pathing.Dijkstra
       AOC.Pathing.Internal
   other-modules:
