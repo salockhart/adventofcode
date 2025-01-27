@@ -11,6 +11,6 @@ dfs expand source target = dfs' [] source
     dfs' visited current
       | target current = [current : visited]
       | current `elem` visited = []
-      | otherwise = do
+      | otherwise =
           let neighbours = expand current
            in concatMap (dfs' (current : visited)) neighbours
