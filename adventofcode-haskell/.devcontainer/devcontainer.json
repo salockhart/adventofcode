@@ -10,9 +10,7 @@
     }
   },
   "features": {
-    "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {
-      "autoEnable": true,
-      "architecture": "amd64",
+    "ghcr.io/devcontainers-extra/features/mise:1": {
       "version": "latest"
     }
   },
@@ -36,5 +34,6 @@
     "SHELL": "/usr/bin/zsh"
   },
   // Comment out to connect as root instead. To add a non-root user, see: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode"
+  "remoteUser": "vscode",
+  "postCreateCommand": "echo 'eval \"$(mise activate zsh)\"' >> ~/.zshrc"
 }

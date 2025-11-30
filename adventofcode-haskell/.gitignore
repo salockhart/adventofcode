@@ -24,3 +24,4 @@ cabal.project.local~
 .cookie
 .envrc
 build/
+mise.local.toml
