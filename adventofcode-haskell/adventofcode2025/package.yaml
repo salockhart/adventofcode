@@ -1,0 +1,34 @@
+name: adventofcode2025
+
+dependencies:
+  - base >= 4.7 && < 5
+  - adventofcode-common
+  - containers
+  - megaparsec
+  - memoize
+  - mtl
+  - regex-pcre-builtin
+  - text
+
+default-extensions:
+  - OverloadedStrings
+  - TupleSections
+
+library:
+  source-dirs: src
+  ghc-options:
+    - -Wall
+
+tests:
+  adventofcode2025-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - adventofcode2025
+      - hspec
+      - hspec-discover

@@ -8,6 +8,7 @@ packages:
   - adventofcode2021
   - adventofcode2023
   - adventofcode2024
+  - adventofcode2025
 
 extra-deps:
   - PSQueue-1.2.0
