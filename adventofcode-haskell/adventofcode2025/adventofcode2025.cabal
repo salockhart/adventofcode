@@ -9,6 +9,8 @@ version:        0.0.0
 build-type:     Simple
 
 library
+  exposed-modules:
+      Day01
   other-modules:
       Paths_adventofcode2025
   hs-source-dirs:
@@ -32,6 +34,7 @@ test-suite adventofcode2025-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Day01Spec
       Paths_adventofcode2025
   hs-source-dirs:
       test

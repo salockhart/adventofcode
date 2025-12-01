@@ -23,6 +23,7 @@ test-watch: build
 ## run and submit the solution
 solve:
 	@echo "Building Day$(day)..."
+	@mkdir -p adventofcode$(year)/build
 	@stack ghc -- \
 		adventofcode$(year)/src/Day$(day).hs \
 		-threaded \
