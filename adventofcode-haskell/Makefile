@@ -45,3 +45,7 @@ setup:
 ## debug
 debug:
 	@echo year=$(year) day=$(day)
+
+## remove all build and .stack-work folders
+clean:
+	@find . -type d -name .stack-work -or -name build | xargs rm -rf {} \;
