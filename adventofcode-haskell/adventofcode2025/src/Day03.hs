@@ -1,6 +1,6 @@
 module Day03 (main, part1, part2) where
 
-import AOC (dbg, mkAoCMain)
+import AOC (mkAoCMain)
 import qualified Data.Text as T
 
 main :: IO ()
@@ -17,7 +17,6 @@ takeHighest n xs =
 solve :: Int -> T.Text -> Int
 solve n =
   sum
-    . dbg
     . map
       ( sum
           . zipWith (\i x -> x * 10 ^ i) [0 :: Int ..]
