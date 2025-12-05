@@ -1,5 +1,7 @@
 module AOC.Data.Tuple where
 
+import Data.Bifunctor (bimap)
+
 fromList2 :: [b] -> (b, b)
 fromList2 [] = error "cannot construct a tuple from an empty list"
 fromList2 [_] = error "cannot construct a tuple from a single element list"
@@ -22,3 +24,7 @@ trdOf3 (_, _, c) = c
 
 take2Of3 :: (a, b, c) -> (a, b)
 take2Of3 (a, b, _) = (a, b)
+
+-- this is also available in https://hackage.haskell.org/package/extra
+both :: (a -> b) -> (a, a) -> (b, b)
+both fn = bimap fn fn
