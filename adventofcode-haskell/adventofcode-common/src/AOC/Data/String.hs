@@ -9,6 +9,9 @@ splitOn delim =
     . T.splitOn (T.pack delim)
     . T.pack
 
+strip :: String -> String
+strip = T.unpack . T.strip . T.pack
+
 readHex :: String -> Integer
 readHex [] = 0
 readHex hxStr = hexToInt (toUpper (last hxStr)) + (16 * readHex (init hxStr))

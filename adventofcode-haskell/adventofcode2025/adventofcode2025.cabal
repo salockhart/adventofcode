@@ -15,6 +15,7 @@ library
       Day03
       Day04
       Day05
+      Day06
   other-modules:
       Paths_adventofcode2025
   hs-source-dirs:
@@ -43,6 +44,7 @@ test-suite adventofcode2025-test
       Day03Spec
       Day04Spec
       Day05Spec
+      Day06Spec
       Paths_adventofcode2025
   hs-source-dirs:
       test
