@@ -1,0 +1,34 @@
+module Day07Spec (spec) where
+
+import qualified Data.Text as T
+import Day07 (part1, part2)
+import Test.Hspec
+
+input :: T.Text
+input =
+  ".......S.......\n\
+  \...............\n\
+  \.......^.......\n\
+  \...............\n\
+  \......^.^......\n\
+  \...............\n\
+  \.....^.^.^.....\n\
+  \...............\n\
+  \....^.^...^....\n\
+  \...............\n\
+  \...^.^...^.^...\n\
+  \...............\n\
+  \..^...^.....^..\n\
+  \...............\n\
+  \.^.^.^.^.^...^.\n\
+  \..............."
+
+spec :: Spec
+spec = do
+  describe "Part1" $ do
+    it ("\n" ++ T.unpack input) $ do
+      part1 input `shouldSatisfy` (== 21)
+
+  describe "Part2" $ do
+    it ("\n" ++ T.unpack input) $ do
+      part2 input `shouldSatisfy` (== 40)
